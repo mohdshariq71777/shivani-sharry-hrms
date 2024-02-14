@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const nodemailer = require('nodemailer');
-const db = require('./../database')
+const db = require('../dbconfig/database')
 router.post('/', async (req, res, next) => {
     let transporter = nodemailer.createTransport({
         service: 'Gmail',

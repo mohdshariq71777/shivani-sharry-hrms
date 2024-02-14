@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const db = require('./../database');
+const db = require('../dbconfig/database');
 const bcrypt = require('bcrypt');
 const checkAuth = require('./../middlewares/checkAuth');
 /* GET users listing. */
