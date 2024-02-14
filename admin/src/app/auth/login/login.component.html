@@ -1,0 +1,27 @@
+<div class="row justify-content-center mt-2">
+  <div class="col-sm-6">
+    <div class="card shadow-none">
+      <div class="card-body">
+        <form #loginForm="ngForm" (ngSubmit)="login()">
+          <div class="row gy-3">
+            <div class="col-sm-12">
+              <label>Email</label>
+              <input type="email" class="form-control" placeholder="Enter email" required email ngModel name="email"
+                #email="ngModel">
+              <small *ngIf="!email.valid && email.touched">Please enter a valid email</small>
+            </div>
+            <div class="col-sm-12">
+              <label>Password</label>
+              <input type="password" class="form-control" placeholder="Enter password" required ngModel name="password"
+                #password="ngModel">
+              <small *ngIf="!password.valid && password.touched">Please enter a valid email</small>
+            </div>
+            <div class="col-sm-12 text-center">
+              <button class="btn btn-success btn-sm" type="submit">Login</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
