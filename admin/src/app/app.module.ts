@@ -10,6 +10,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { AuthInterceptor } from './_services/auth-interceptor.service';
 import { AuthGuard } from './_services/auth-guard.service';
 import { ChangePasswordComponent } from './auth/change-password/change-password.component';
+import { ProductListComponent } from './product-list/product-list.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ChangePasswordComponent } from './auth/change-password/change-password.
     HeaderComponent,
     NumericOnlyDirective,
     LoginComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    ProductListComponent
   ],
   imports: [
     BrowserModule,
