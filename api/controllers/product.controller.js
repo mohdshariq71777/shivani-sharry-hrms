@@ -1,5 +1,5 @@
 
-const db = require('../dbconnection/db.connection')
+const db = require('../dbconfig/database')
 
 const addProduct = (req, res) => {
   
