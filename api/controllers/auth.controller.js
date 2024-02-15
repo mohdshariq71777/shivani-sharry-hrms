@@ -2,8 +2,8 @@ const db = require('../dbconfig/database');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-const userLogin = (req, res) => {
-    (req, res, next) => {
+const userLogin = (req, res,next) => {
+
         const email = req.body.email;
         const password = req.body.password;
         db.query(`Select emp_id, name, email, gender, designation, address, phone, department, joining_date, dob,password from employees where email='${email}'`, (err, result, fields) => {
@@ -39,7 +39,7 @@ const userLogin = (req, res) => {
             })
         });
     } 
-}
+
 
 
 
