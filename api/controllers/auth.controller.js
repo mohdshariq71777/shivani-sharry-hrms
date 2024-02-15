@@ -37,8 +37,8 @@ const userLogin = (req, res, next) => {
             res.status(401).json({ message: 'Authorization failed!', err: error });
         })
     });
-
 }
+
 const adminLogin = (req, res, next) => {
     const email = req.body.email;
     const password = req.body.password;
@@ -71,7 +71,6 @@ const adminLogin = (req, res, next) => {
     });
 
 }
-
 
 
 module.exports = { userLogin, adminLogin };
