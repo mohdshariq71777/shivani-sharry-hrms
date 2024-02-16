@@ -11,7 +11,7 @@ const db = require('../dbconfig/database')
 //      res.status(200).json({
 //         status: "200",
 //         result: result,
-//         massage: "success"
+//         message: "success"
 //     })
 //     });  
 // }
@@ -24,14 +24,13 @@ module.exports = {
                 return res.status(500).json({ error: 'Error creating category group' });
             }
             res.status(200).json({
-                status: "200",
-                result: result,
-                massage: "success"
+                status: 200,
+                message: "Group category added successfully!"
             })
         });
     },
     getAllGroupCategory: async (req, res) => {
-        const query = `select * from product_group_category `;
+        const query = `Select * from product_group_category;`;
         db.query(query, (err, result) => {
             if (err) {
                 return res.status(500).json({ error: 'Error' });
@@ -39,11 +38,10 @@ module.exports = {
             res.status(200).json({
                 status: "200",
                 result: result,
-                massage: "success"
+                message: "success"
             })
         });
     },
-
     addTypeCategory: async (req, res) => {
         let group_category_id = req.body.group_category_id
         let type_category_name = req.body.type_category_name
@@ -54,9 +52,8 @@ module.exports = {
                 return res.status(500).json({ error: 'Error creating category group' });
             }
             res.status(200).json({
-                status: "200",
-                result: result,
-                massage: "success"
+                status: 200,
+                message: "Type category added successfully!"
             })
         });
     },
@@ -69,7 +66,7 @@ module.exports = {
             res.status(200).json({
                 status: "200",
                 result: result,
-                massage: "success"
+                message: "success"
             })
         });
     },
@@ -86,7 +83,7 @@ module.exports = {
             res.status(200).json({
                 status: "200",
                 result: result,
-                massage: "success"
+                message: "success"
             })
         });
     },
@@ -99,7 +96,7 @@ module.exports = {
             res.status(200).json({
                 status: "200",
                 result: result,
-                massage: "success"
+                message: "success"
             })
         });
     },

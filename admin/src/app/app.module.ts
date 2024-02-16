@@ -11,6 +11,8 @@ import { AuthInterceptor } from './_services/auth-interceptor.service';
 import { AuthGuard } from './_services/auth-guard.service';
 import { ChangePasswordComponent } from './auth/change-password/change-password.component';
 import { ProductListComponent } from './product-list/product-list.component';
+import { AddGroupCategoryComponent } from './add-group-category/add-group-category.component';
+import { AddTypeCategoryComponent } from './add-group-category copy/add-type-category.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { ProductListComponent } from './product-list/product-list.component';
     NumericOnlyDirective,
     LoginComponent,
     ChangePasswordComponent,
-    ProductListComponent
+    ProductListComponent,
+    AddGroupCategoryComponent,
+    AddTypeCategoryComponent
   ],
   imports: [
     BrowserModule,
