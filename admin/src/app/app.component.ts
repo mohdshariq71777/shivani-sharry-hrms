@@ -15,9 +15,7 @@ export class AppComponent {
       return
     }
     else {
-      const emp_id = sessionStorage.getItem('emp_id');
-      const decr_emp_id = CryptoJS.AES.decrypt(emp_id, 'your-secret-key').toString(CryptoJS.enc.Utf8);
-      this.authService.setAuth(true, Number(decr_emp_id), sessionStorage.getItem('token'));
+      this.authService.setAuth(true, sessionStorage.getItem('token'));
     }
   }
 }
