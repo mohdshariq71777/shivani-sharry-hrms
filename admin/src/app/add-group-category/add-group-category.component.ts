@@ -10,13 +10,12 @@ import { ProductService } from '../_services/products.service';
 })
 export class AddGroupCategoryComponent implements OnInit {
   constructor(private prodServ: ProductService) { }
-  @ViewChild('groupCatg') groupCatg: NgForm | undefined;
+  @ViewChild('groupCatgFrm') groupCatgFrm: NgForm | undefined;
   ngOnInit(): void {
 
   }
   addGroupCat() {
-    // console.log(this.groupCatg.form.controls['isActive'].value)
-    // console.log(this.groupCatg.form.controls['name'].value)
-    this.prodServ.addGroupCat(this.groupCatg.form.controls['catName'].value, this.groupCatg.form.controls['isActive'].value)
+    this.prodServ.addGroupCat(this.groupCatgFrm.form.controls['catName'].value, this.groupCatgFrm.form.controls['isActive'].value)
+    this.groupCatgFrm.form.reset();
   }
 }

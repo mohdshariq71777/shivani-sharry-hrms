@@ -1,0 +1,45 @@
+<div class="row justify-content-center mt-2">
+  <div class="col-sm-6">
+    <div class="card shadow-none">
+      <div class="card-body">
+        <form #catgForm="ngForm" (ngSubmit)="addCategory()">
+          <div class="row gy-2">
+            <div class="col-sm-12">
+              <label>Group Category</label>
+              <select class="form-select" name="grp_cat_id" #grp_cat_id ngModel (change)="selectGrpCat()">
+                <option value="null" selected disabled>Select Group Category</option>
+                <option *ngFor="let cat of product_group_categories" [value]="cat.group_category_id">
+                  {{cat.group_category_name}}</option>
+              </select>
+            </div>
+            <div class="col-sm-12">
+              <label>Type Category</label>
+              <select class="form-select" name="type_cat_id" #type_cat_id ngModel>
+                <option value="null" selected disabled>Select Type Category</option>
+                <option *ngFor="let cat of product_type_categories" [value]="cat.type_category_id">
+                  {{cat.type_category_name}}</option>
+              </select>
+            </div>
+            <div class="col-sm-12">
+              <label>Category Name</label>
+              <input name="catName" type="text" class="form-control" placeholder="Enter type category name" ngModel
+                #catName required>
+            </div>
+            <div class="col-sm-12">
+              <div class="form-check">
+                <input name="isActive" class="form-check-input" type="checkbox" ngModel id="flexCheckChecked" checked
+                  #isActive>
+                <label class="form-check-label" for="flexCheckChecked">
+                  Is active
+                </label>
+              </div>
+            </div>
+            <div class="col-sm-12 text-center">
+              <button type="submit" class="btn btn-success btn-sm">Submit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

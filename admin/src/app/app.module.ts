@@ -12,7 +12,8 @@ import { AuthGuard } from './_services/auth-guard.service';
 import { ChangePasswordComponent } from './auth/change-password/change-password.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { AddGroupCategoryComponent } from './add-group-category/add-group-category.component';
-import { AddTypeCategoryComponent } from './add-group-category copy/add-type-category.component';
+import { AddTypeCategoryComponent } from './add-type-category/add-type-category.component';
+import { AddCategoryComponent } from './add-category/add-category.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { AddTypeCategoryComponent } from './add-group-category copy/add-type-cat
     ChangePasswordComponent,
     ProductListComponent,
     AddGroupCategoryComponent,
-    AddTypeCategoryComponent
+    AddTypeCategoryComponent,
+    AddCategoryComponent
   ],
   imports: [
     BrowserModule,
