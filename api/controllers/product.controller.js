@@ -9,7 +9,7 @@ module.exports = {
         let category_id = req.body.category_id
         let product_name = req.body.product_name
         let description = req.body.description
-        let price = req.body.price
+        let price = req.body.product_price
 
         const insertUserQuery = `INSERT INTO products (group_category_id,type_category_id,category_id,product_name,product_description,price) VALUES (${group_category_id},${type_category_id},${category_id},'${product_name}','${description}','${price}')`;
         console.log(insertUserQuery);
@@ -18,9 +18,9 @@ module.exports = {
                 return res.status(500).json({ error: 'Error adding product' });
             }
             res.status(200).json({
-                status: "200",
+                status: 200,
                 result: result,
-                massage: "success"
+                message: "success"
             })
         });
     },
@@ -50,15 +50,46 @@ module.exports = {
         console.log(insertUserQuery);
         db.query(insertUserQuery, (err, result) => {
             if (err) {
+                return res.status(500).json({ error: 'Error adding product image' });
+            }
+            res.status(200).json({
+                status: 200,
+                result: result,
+                message: "success"
+            })
+        });
+    },
+    getAllProducts: async (req, res) => {
+        const insertUserQuery = `Select group_category_id,type_category_id,category_id,product_name,product_description,price from products`;
+        console.log(insertUserQuery);
+        db.query(insertUserQuery, (err, result) => {
+            if (err) {
                 return res.status(500).json({ error: 'Error adding product' });
             }
             res.status(200).json({
-                status: "200",
+                status: 200,
                 result: result,
-                massage: "success"
+                message: "success"
             })
         });
-        // res.status(200).send({ "filePath": url, "filename": req.file.filename });
-        // res.send('File uploaded successfully');
-    }
+    },
+    getAllActiveProducts: async (req, res) => {
+        const insertUserQuery = `
+        select ps.product_name,ps.price,ps.product_description,ps.updated_date,ps.created_date,pc.category_name,ptc.type_category_name,pgc.group_category_name from products ps
+        left join product_category pc on pc.category_id=ps.category_id
+        left join product_type_category ptc on ptc.type_category_id=ps.type_category_id
+        left join product_group_category pgc on pgc.group_category_id=ps.group_category_id;
+        `;
+        console.log(insertUserQuery);
+        db.query(insertUserQuery, (err, result) => {
+            if (err) {
+                return res.status(500).json({ error: 'Error adding product' });
+            }
+            res.status(200).json({
+                status: 200,
+                result: result,
+                message: "success"
+            })
+        });
+    },
 };

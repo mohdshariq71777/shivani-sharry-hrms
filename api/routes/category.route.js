@@ -11,5 +11,6 @@ router.get('/get-type-category', categoryController.getAllTypeCategory)
 router.post('/get-active-type-category', categoryController.getActiveTypeCategory)
 router.post('/add-category', categoryController.addCategory);
 router.get('/get-category', categoryController.getAllCategory);
+router.post('/get-active-category', categoryController.getActiveCategory);
 
 module.exports = router;
