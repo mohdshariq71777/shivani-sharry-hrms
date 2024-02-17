@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 import * as CryptoJS from 'crypto-js';
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,11 @@ export class ProductService {
   addGroupCat(grpCatName: string, isActive: boolean) {
     const payload = { group_category_name: grpCatName, is_active: isActive };
     this.http.post<{ status: number, message: string }>(`${this.api_url}/add-group-category`, payload).subscribe(res => { console.log(res) })
+  }
+  
+  getGroupCate():Observable<any>{
+    return this.http.get<any>(`${this.api_url}/get-group-category`).pipe(map((result:any)=>result)); 
+
   }
   getActiveGroupCat() {
     return this.http.get<{ status: number, message: string, result: [] }>(`${this.api_url}/get-active-group-category`)

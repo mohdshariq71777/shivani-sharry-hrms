@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'change-password', component: ChangePasswordComponent },
   { path: 'product-list', component: ProductListComponent, canActivate: [AuthGuard] },
-  { path: 'add-group-category', component: AddGroupCategoryComponent, canActivate: [AuthGuard] },
+  { path: 'add-group-category', component: AddGroupCategoryComponent },
   { path: 'add-type-category', component: AddTypeCategoryComponent, canActivate: [AuthGuard] },
   { path: 'add-category', component: AddCategoryComponent, canActivate: [AuthGuard] },
 ];
