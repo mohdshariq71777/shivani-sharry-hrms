@@ -14,6 +14,7 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { AddGroupCategoryComponent } from './add-group-category/add-group-category.component';
 import { AddTypeCategoryComponent } from './add-type-category/add-type-category.component';
 import { AddCategoryComponent } from './add-category/add-category.component';
+import { AgGridAngular } from 'ag-grid-angular';
 import { ManageProductComponent } from './manage-product/manage-product.component';
 
 @NgModule({
@@ -34,7 +35,7 @@ import { ManageProductComponent } from './manage-product/manage-product.componen
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-
+    AgGridAngular
   ],
   providers: [
     AuthGuard,
