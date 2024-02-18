@@ -33,8 +33,8 @@ export class ManageCategoryComponent implements OnInit {
   }
   addCategory() {
     this.prodServ.addCat(this.catgForm.form.controls['grp_cat_id'].value, this.catgForm.form.controls['type_cat_id'].value, this.catgForm.form.controls['isActive'].value, this.catgForm.form.controls['catName'].value)
-    this.catgForm.form.reset();
     this.getCatData()
+    this.catgForm.form.reset();
   }
   selectGrpCat() {
     this.prodServ.getActiveTypeCat(this.catgForm.form.controls['grp_cat_id'].value).subscribe(catgrs => this.product_type_categories = catgrs.result);

@@ -2,8 +2,8 @@ const { createPool } = require('mysql2');
 const pool = createPool({
   host: "localhost",
   user: "root",
-  password: "Shivani",
-  database: "mynodedb",
+  password: "falak",
+  database: "hrms",
   connectionLimit: 10
 })
 pool.getConnection((err, connection) => {

@@ -38,8 +38,8 @@ export class ManageTypeCategoryComponent implements OnInit {
       isActive: this.typeCatgForm.form.controls['isActive'].value
     }
     this.prodServ.addTypeCat(this.tpCat);
-    this.typeCatgForm.form.reset();
     this.getTypeCatData()
+    this.typeCatgForm.form.reset();
   }
   getTypeCatData() {
     this.prodServ.getTypeCat().subscribe(res => {
