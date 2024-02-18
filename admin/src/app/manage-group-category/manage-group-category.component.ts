@@ -3,12 +3,13 @@ import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/_services/auth.service';
 import { ProductService } from '../_services/products.service';
 import { ColDef } from 'ag-grid-community';
+import { GroupCategory } from '../models/group-category';
 @Component({
-  selector: 'app-add-group-category',
-  templateUrl: './add-group-category.component.html',
-  styleUrls: ['./add-group-category.component.css']
+  selector: 'app-manage-group-category',
+  templateUrl: './manage-group-category.component.html',
+  styleUrls: ['./manage-group-category.component.css']
 })
-export class AddGroupCategoryComponent implements OnInit {
+export class ManageGroupCategoryComponent implements OnInit {
   columnDefs: ColDef[] = [
     { headerName: 'Sr No.', field: 'sr_no', width: 200 },
     { headerName: 'Group Category', field: 'group_category_name', width: 500 },
@@ -22,26 +23,30 @@ export class AddGroupCategoryComponent implements OnInit {
     { headerName: 'Action', field: '', width: 200 },
   ];
 
-  groupCategory: any[] = []
+  groupCategories = []
+  grpCat: GroupCategory = null;
   constructor(private prodServ: ProductService) { }
   @ViewChild('groupCatgFrm') groupCatgFrm: NgForm | undefined;
   ngOnInit(): void {
     this.getGroupData()
   }
   addGroupCat() {
-    this.prodServ.addGroupCat(this.groupCatgFrm.form.controls['catName'].value, this.groupCatgFrm.form.controls['isActive'].value)
+    this.grpCat = {
+      grpCatName: this.groupCatgFrm.form.controls['catName'].value,
+      isActive: this.groupCatgFrm.form.controls['isActive'].value
+    }
+    this.prodServ.addGroupCat(this.grpCat)
     this.groupCatgFrm.form.reset();
     this.getGroupData()
   }
   getGroupData() {
     this.prodServ.getGroupCate().subscribe(res => {
       console.log(res);
-      let groupCategory = res.result
-      for (let i = 0; i < groupCategory.length; i++) {
-        groupCategory[i]['sr_no'] = i + 1
-
+      let groupCategories = res.result
+      for (let i = 0; i < groupCategories.length; i++) {
+        groupCategories[i]['sr_no'] = i + 1
       }
-      this.groupCategory = groupCategory;
+      this.groupCategories = groupCategories;
     })
   }
 }

@@ -18,7 +18,7 @@ export class AuthService {
     const credentials = { email: email, password: password }
     this.http.post<{ token: string, expiresIn: number, adminName: string }>(this.auth_url, credentials).subscribe(res => {
       this.setAuth(true, res.token);
-      this.router.navigate(['/add-group-category']);
+      this.router.navigate(['/dashboard']);
     })
   }
   setAuth(authz: boolean, token: string | null) {

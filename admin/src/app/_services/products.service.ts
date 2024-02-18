@@ -5,6 +5,8 @@ import { BehaviorSubject, Observable, map } from 'rxjs';
 import * as CryptoJS from 'crypto-js';
 import { FetchedProduct } from '../models/fetched-product.model';
 import { Product } from '../models/product.model';
+import { GroupCategory } from '../models/group-category';
+import { TypeCategory } from '../models/type-category.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -22,25 +24,30 @@ export class ProductService {
   fetchActiveProductsUpdateListener() {
     return this.productsSub.asObservable();
   }
-  addGroupCat(grpCatName: string, isActive: boolean) {
-    const payload = { group_category_name: grpCatName, is_active: isActive };
+  addGroupCat(grpCat: GroupCategory) {
+    const payload = { group_category_name: grpCat.grpCatName, is_active: grpCat.isActive };
     this.http.post<{ status: number, message: string }>(`${this.api_url}/add-group-category`, payload).subscribe(res => { console.log(res) })
   }
 
-  getGroupCate(): Observable<any> {
-    return this.http.get<any>(`${this.api_url}/get-group-category`).pipe(map((result: any) => result));
-
+  getGroupCate() {
+    return this.http.get<{ status: number, result: any[], message: string }>(`${this.api_url}/get-group-category`);
   }
   getActiveGroupCat() {
     return this.http.get<{ status: number, message: string, result: [] }>(`${this.api_url}/get-active-group-category`)
   }
-  addTypeCat(grpCatId: number, typeCatName: string, isActive: boolean) {
-    const payload = { group_category_id: grpCatId, type_category_name: typeCatName, is_active: isActive };
+  addTypeCat(tpCat: TypeCategory) {
+    const payload = { group_category_id: tpCat.grpCatId, type_category_name: tpCat.typeCatName, is_active: tpCat.isActive };
     this.http.post<{ status: number, message: string }>(`${this.api_url}/add-type-category`, payload).subscribe(res => { console.log(res) })
+  }
+  getTypeCat() {
+    return this.http.get<{ status: number, result: any[], message: string }>(`${this.api_url}/get-type-category`);
   }
   getActiveTypeCat(grpCatId: number) {
     const payload = { grp_cat_id: grpCatId }
     return this.http.post<{ status: number, message: string, result: [] }>(`${this.api_url}/get-active-type-category`, payload)
+  }
+  getCat() {
+    return this.http.get<{ status: number, result: any[], message: string }>(`${this.api_url}/get-category`);
   }
   addCat(grpCatId: number, typeCatId: number, isActive: boolean, catName: string) {
     const payload = { group_category_id: grpCatId, type_category_id: typeCatId, is_active: isActive, category_name: catName };

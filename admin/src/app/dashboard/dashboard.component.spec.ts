@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddTypeCategoryComponent } from './add-type-category.component';
+import { DashboardComponent } from './dashboard.component';
 
-describe('AddTypeCategoryComponent', () => {
-  let component: AddTypeCategoryComponent;
-  let fixture: ComponentFixture<AddTypeCategoryComponent>;
+describe('DashboardComponent', () => {
+  let component: DashboardComponent;
+  let fixture: ComponentFixture<DashboardComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AddTypeCategoryComponent]
+      declarations: [DashboardComponent]
     })
       .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddTypeCategoryComponent);
+    fixture = TestBed.createComponent(DashboardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

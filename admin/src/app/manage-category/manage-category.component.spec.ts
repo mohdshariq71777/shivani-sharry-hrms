@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddGroupCategoryComponent } from './add-group-category.component';
+import { ManageCategoryComponent } from './manage-category.component';
 
-describe('AddGroupCategoryComponent', () => {
-  let component: AddGroupCategoryComponent;
-  let fixture: ComponentFixture<AddGroupCategoryComponent>;
+describe('ManageCategoryComponent', () => {
+  let component: ManageCategoryComponent;
+  let fixture: ComponentFixture<ManageCategoryComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AddGroupCategoryComponent]
+      declarations: [ManageCategoryComponent]
     })
       .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddGroupCategoryComponent);
+    fixture = TestBed.createComponent(ManageCategoryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

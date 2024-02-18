@@ -75,7 +75,8 @@ module.exports = {
         });
     },
     getAllTypeCategory: async (req, res) => {
-        const query = `select * from product_type_category `;
+        const query = `select ptc.type_category_name,ptc.is_active,pgc.group_category_name from product_type_category ptc
+        left join product_group_category pgc on ptc.group_category_id=pgc.group_category_id;`;
         db.query(query, (err, result) => {
             if (err) {
                 return res.status(500).json({ error: 'Error' });
@@ -121,7 +122,10 @@ module.exports = {
         });
     },
     getAllCategory: async (req, res) => {
-        const query = `select * from product_category `;
+        const query = `select pc.category_name,pc.is_active,ptc.type_category_name,pgc.group_category_name 
+        from product_category pc
+        left join product_type_category ptc on ptc.type_category_id=pc.type_category_id
+        left join product_group_category pgc on pgc.group_category_id=ptc.group_category_id;`;
         db.query(query, (err, result) => {
             if (err) {
                 return res.status(500).json({ error: 'Error' });

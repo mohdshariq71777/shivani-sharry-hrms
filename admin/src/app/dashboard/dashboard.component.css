@@ -1,6 +1,13 @@
 .ng-invalid.ng-touched {
   border-color: red;
 }
+.myList {
+  list-style: none;
+  padding: 0px;
+}
+.myList li {
+  padding: 5px 0px;
+}
 .mnhytBg {
   min-height: calc(100vh - 56px);
 }
