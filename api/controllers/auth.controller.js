@@ -44,10 +44,17 @@ const adminLogin = (req, res, next) => {
     const password = req.body.password;
     db.query(`Select name,email,phone,password from admin where email='${email}'`, (err, result, fields) => {
         if (err) {
-            return console.log(err);
+            console.log(err)
+            return res.status(401).json({ status: 401, message: 'Please enter the correct email!' });
         }
-        console.log(result)
-        if (result[0].password = password) {
+        console.log(result === null);
+        console.log(result);
+        console.log(!result[0]);
+        if (!result[0]) {
+            return res.status(401).json({ status: 401, message: 'Please enter the correct email!' });
+        }
+
+        if (result[0].password === password) {
             const loggedAdmin = {
                 email: result[0].email,
                 name: result[0].name,
@@ -60,12 +67,13 @@ const adminLogin = (req, res, next) => {
             );
             res.status(200).json({
                 token: token,
+                status: 200,
                 expiresIn: 3600,
                 adminName: loggedAdmin.name
             })
         }
         else {
-            res.status(401).json({ message: 'Authorization failed!' });
+            res.status(401).json({ status: 401, message: 'Please enter the correct password!' });
         }
 
     });

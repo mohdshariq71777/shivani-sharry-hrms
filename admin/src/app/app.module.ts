@@ -16,7 +16,8 @@ import { ManageTypeCategoryComponent } from './manage-type-category/manage-type-
 import { ManageCategoryComponent } from './manage-category/manage-category.component';
 import { AgGridAngular } from 'ag-grid-angular';
 import { ManageProductComponent } from './manage-product/manage-product.component';
-
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +36,13 @@ import { ManageProductComponent } from './manage-product/manage-product.componen
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    AgGridAngular
+    AgGridAngular,
+    ToastrModule.forRoot({
+      timeOut: 2000,
+      positionClass: 'toast-top-center',
+      preventDuplicates: true,
+    }),
+    BrowserAnimationsModule
   ],
   providers: [
     AuthGuard,

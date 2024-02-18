@@ -12,11 +12,11 @@ import { ManageCategoryComponent } from './manage-category/manage-category.compo
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'change-password', component: ChangePasswordComponent },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'dashboard', component: DashboardComponent },
   { path: 'manage-group-category', component: ManageGroupCategoryComponent },
-  { path: 'manage-type-category', component: ManageTypeCategoryComponent, canActivate: [AuthGuard] },
-  { path: 'manage-category', component: ManageCategoryComponent, canActivate: [AuthGuard] },
-  { path: 'manage-product', component: ManageProductComponent, canActivate: [AuthGuard] },
+  { path: 'manage-type-category', component: ManageTypeCategoryComponent },
+  { path: 'manage-category', component: ManageCategoryComponent },
+  { path: 'manage-product', component: ManageProductComponent },
 ];
 
 @NgModule({
