@@ -18,6 +18,7 @@ import { AgGridAngular } from 'ag-grid-angular';
 import { ManageProductComponent } from './manage-product/manage-product.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HomePageComponent } from './home-page/home-page.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +30,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ManageGroupCategoryComponent,
     ManageTypeCategoryComponent,
     ManageCategoryComponent,
-    ManageProductComponent
+    ManageProductComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,

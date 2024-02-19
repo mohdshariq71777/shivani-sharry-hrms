@@ -8,6 +8,7 @@ import { ManageGroupCategoryComponent } from './manage-group-category/manage-gro
 import { ManageTypeCategoryComponent } from './manage-type-category/manage-type-category.component';
 import { ManageProductComponent } from './manage-product/manage-product.component';
 import { ManageCategoryComponent } from './manage-category/manage-category.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'manage-type-category', component: ManageTypeCategoryComponent },
   { path: 'manage-category', component: ManageCategoryComponent },
   { path: 'manage-product', component: ManageProductComponent },
+  { path: 'home', component: HomePageComponent },
 ];
 
 @NgModule({

@@ -1,0 +1,232 @@
+/* .customdropdownmenu b.float-end ,.customdropdownmenu ul.submenu.dropdown-menu{
+    display: none !important;
+} */
+
+/* button#dropdownMenuButton11 {
+    pointer-events: none !important;
+} */
+
+/* Feel free to change duration  */
+.animated {
+  -webkit-animation-duration: 1000 ms;
+  animation-duration: 1000 ms;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+/* .owl-animated-out - only for current item */
+/* This is very important class. Use z-index if you want move Out item above In item */
+.fadeIn {
+  z-index: 1;
+}
+/* .owl-animated-in - only for upcoming item
+  /* This is very important class. Use z-index if you want move In item above Out item */
+.fadeOut {
+  z-index: 0;
+}
+/* .fadeOut is style taken from Animation.css and this is how it looks in owl.carousel.css:  */
+.fadeOut {
+  animation: fadeOut ease 8s;
+  -webkit-animation: fadeOut ease 8s;
+  -moz-animation: fadeOut ease 8s;
+  -o-animation: fadeOut ease 8s;
+  -ms-animation: fadeOut ease 8s;
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@-moz-keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@-o-keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@-ms-keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* New Code */
+
+.banner-right .card {
+  height: 147px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media screen and (min-width: 1200px) {
+  #slider-home {
+    min-height: 315px;
+  }
+  .slider-banner img {
+    height: 160px;
+  }
+}
+
+/* Header starts */
+
+.navbar {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.navbar .icon {
+  fill: #45bbb6;
+}
+
+.logo {
+  display: inline-block;
+  padding: 0.5rem;
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+
+a {
+  color: #45bbb6;
+}
+
+.menu {
+  margin: 0;
+  display: flex;
+  list-style: none;
+}
+.menu .mainLink {
+  position: relative;
+  z-index: 2;
+  display: block;
+  letter-spacing: 0.01rem;
+  padding: 1rem 1rem;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.25rem;
+  transition: 0.2s;
+}
+.menu .innerLink,
+.innerList {
+  position: relative;
+  z-index: 2;
+  display: block;
+  letter-spacing: 0.01rem;
+  padding: 1rem 1rem;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: 0.2s;
+}
+li.innerList:hover {
+  background: #45bbb6;
+}
+li.innerList a {
+  text-decoration: none;
+  font-size: 1rem !important;
+  font-weight: 500;
+}
+li.innerList:hover a {
+  color: #fff;
+}
+li.innerList:hover .icon {
+  fill: #fff;
+}
+.dropdown > a {
+  display: flex;
+  align-items: center;
+  .icon {
+    margin-left: 0.25em;
+  }
+}
+
+.dropdown:hover .dropdown-div {
+  display: block !important;
+}
+.dropdown-div {
+  position: absolute;
+  width: 500px;
+}
+.dropdown:hover .dropdown-nav {
+  opacity: 1;
+  transform: translateY(0);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.dropdown-nav {
+  opacity: 0;
+  transition: transform 0.3s cubic-bezier(0.88, -0.72, 0, 1),
+    opacity 0.3s ease-in-out;
+  transform: translateY(-4rem);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  z-index: 1;
+  background: #edf9f8;
+  position: relative;
+  a {
+    font-weight: 300;
+    font-size: 1.2rem;
+  }
+}
+.dropdown:hover .dropdown-inner-nav {
+  opacity: 1;
+  transform: translateY(0);
+  border-bottom: 1px solid #ddd;
+  /* box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+  0 2px 4px -1px rgba(0, 0, 0, 0.06); */
+}
+
+.dropdown-inner-nav {
+  opacity: 0;
+  transition: transform 0.3s cubic-bezier(0.88, -0.72, 0, 1),
+    opacity 0.3s ease-in-out;
+  transform: translateY(-4rem);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  z-index: 1;
+  background: #edf9f8;
+  position: relative;
+  a {
+    font-weight: 300;
+    font-size: 1.2rem;
+  }
+}
+.dropdown-inner-nav li {
+  padding: 10px 12px;
+}
+
+/* Header ends */
+.link-theme {
+  color: #45bbb6;
+  text-decoration: none;
+}
