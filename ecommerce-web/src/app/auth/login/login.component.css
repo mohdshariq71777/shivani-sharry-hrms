@@ -1,0 +1,6 @@
+.ng-invalid.ng-touched {
+  border-color: red;
+}
+.mnhytBg {
+  min-height: calc(100vh - 56px);
+}

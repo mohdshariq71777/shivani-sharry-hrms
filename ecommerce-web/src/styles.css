@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~ag-grid-community/styles//ag-grid.css";
+@import "~ag-grid-community/styles//ag-theme-quartz.css";
+.table-responsive {
+  white-space: pre;
+}
+.font9 {
+  font-size: 0.9rem;
+}
+.mnwidth90plus {
+  min-width: 96vw;
+}
+.font600 {
+  font-weight: 600;
+}

@@ -7,5 +7,6 @@ const { upload } = require('../middlewares/fileupload')
 router.post('/add-product', productController.addProduct);
 router.post('/add-product-images', upload.single('file'), productController.addProductImages);
 router.get('/get-all-active-products', productController.getAllActiveProducts);
+router.get('/get-group-category-active-products', productController.getGroupCategoryActiveProducts);
 
 module.exports = router;

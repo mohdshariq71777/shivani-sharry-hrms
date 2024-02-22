@@ -92,4 +92,20 @@ module.exports = {
             })
         });
     },
+    getGroupCategoryActiveProducts: async (req, res) => {
+        const groupCategoryId = req.body.groupCatId;
+        const typeCategoryId = req.body.typeCatId;
+        const insertUserQuery = `Select product_name,product_description,price from products where type_category_id='${typeCategoryId}' and group_category_id='${groupCategoryId}' and is_active='1';`;
+        console.log(insertUserQuery);
+        db.query(insertUserQuery, (err, result) => {
+            if (err) {
+                return res.status(500).json({ error: 'Error fetching products' });
+            }
+            res.status(200).json({
+                status: 200,
+                result: result,
+                message: "success"
+            })
+        });
+    },
 };

@@ -10,14 +10,10 @@ import { LoginComponent } from './auth/login/login.component';
 import { AuthInterceptor } from './_services/auth-interceptor.service';
 import { AuthGuard } from './_services/auth-guard.service';
 import { ChangePasswordComponent } from './auth/change-password/change-password.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { ManageGroupCategoryComponent } from './manage-group-category/manage-group-category.component';
-import { ManageTypeCategoryComponent } from './manage-type-category/manage-type-category.component';
-import { ManageCategoryComponent } from './manage-category/manage-category.component';
 import { AgGridAngular } from 'ag-grid-angular';
-import { ManageProductComponent } from './manage-product/manage-product.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HomePageComponent } from './home-page/home-page.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,11 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NumericOnlyDirective,
     LoginComponent,
     ChangePasswordComponent,
-    DashboardComponent,
-    ManageGroupCategoryComponent,
-    ManageTypeCategoryComponent,
-    ManageCategoryComponent,
-    ManageProductComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,

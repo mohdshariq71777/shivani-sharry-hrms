@@ -8,17 +8,16 @@ import { ManageGroupCategoryComponent } from './manage-group-category/manage-gro
 import { ManageTypeCategoryComponent } from './manage-type-category/manage-type-category.component';
 import { ManageProductComponent } from './manage-product/manage-product.component';
 import { ManageCategoryComponent } from './manage-category/manage-category.component';
-import { HomePageComponent } from './home-page/home-page.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'change-password', component: ChangePasswordComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'manage-group-category', component: ManageGroupCategoryComponent },
-  { path: 'manage-type-category', component: ManageTypeCategoryComponent },
-  { path: 'manage-category', component: ManageCategoryComponent },
-  { path: 'manage-product', component: ManageProductComponent },
-  { path: 'home', component: HomePageComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'manage-group-category', component: ManageGroupCategoryComponent, canActivate: [AuthGuard] },
+  { path: 'manage-type-category', component: ManageTypeCategoryComponent, canActivate: [AuthGuard] },
+  { path: 'manage-category', component: ManageCategoryComponent, canActivate: [AuthGuard] },
+  { path: 'manage-product', component: ManageProductComponent, canActivate: [AuthGuard] },
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
