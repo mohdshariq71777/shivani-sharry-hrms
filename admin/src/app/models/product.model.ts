@@ -4,6 +4,6 @@ export interface Product {
   catId: number,
   isActive: boolean,
   productName: string,
-  description: string
+  brand_name: string
   price: string
 }

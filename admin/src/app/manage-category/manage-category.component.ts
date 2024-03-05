@@ -42,13 +42,11 @@ export class ManageCategoryComponent implements OnInit {
   }
   getCatData() {
     this.prodServ.getCat().subscribe(res => {
-      console.log(res);
       let categories_list = res.result
       for (let i = 0; i < categories_list.length; i++) {
         categories_list[i]['sr_no'] = i + 1
       }
       this.categories_list = categories_list;
-      console.log(categories_list)
     })
   }
 }

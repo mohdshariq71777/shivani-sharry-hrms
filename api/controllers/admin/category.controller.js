@@ -1,29 +1,11 @@
-
-const db = require('../dbconfig/database')
-
-// const addGroupCategory = (req, res) => {
-//     let group_category_name = req.body.group_category_name
-//     const insertUserQuery = `INSERT INTO product_group_category (group_category_name) VALUES ('${group_category_name}')`;
-//     db.query(insertUserQuery, (err, result) => {
-//       if (err) {
-//         return res.status(500).json({ error: 'Error creating category group' });
-//       }
-//      res.status(200).json({
-//         status: "200",
-//         result: result,
-//         message: "success"
-//     })
-//     });  
-// }
+const db = require('../../dbconfig/database');
 module.exports = {
     addGroupCategory: async (req, res) => {
         let group_category_name = req.body.group_category_name;
         let isActive = req.body.is_active;
-        console.log(isActive)
         const insertUserQuery = `INSERT INTO product_group_category (group_category_name,is_active) VALUES ('${group_category_name}','${isActive ? 1 : 0}')`;
         db.query(insertUserQuery, (err, result) => {
             if (err) {
-                console.error(err)
                 return res.status(500).json({ error: err });
             }
             res.status(200).json({
@@ -38,7 +20,6 @@ module.exports = {
             if (err) {
                 return res.status(500).json({ error: 'Error' });
             }
-            console.log(result)
             res.status(200).json({
                 status: 200,
                 result: result,
@@ -95,8 +76,6 @@ module.exports = {
             if (err) {
                 return res.status(500).json({ error: 'Error' });
             }
-            console.log(grpCat)
-            console.log(result)
             res.status(200).json({
                 status: 200,
                 result: result,
@@ -142,12 +121,9 @@ module.exports = {
         let typeCat = req.body.type_cat_id;
         const query = `select * from product_category where is_active=1 and group_category_id='${grpCat}' and type_category_id='${typeCat}'`;
         db.query(query, (err, result) => {
-            console.log(err)
             if (err) {
                 return res.status(500).json({ error: 'Error' });
             }
-            console.log(grpCat)
-            console.log(result)
             res.status(200).json({
                 status: 200,
                 result: result,
@@ -156,6 +132,3 @@ module.exports = {
         });
     },
 }
-
-
-// module.exports = { addGroupCategory, addTypeCategory, addCategory };

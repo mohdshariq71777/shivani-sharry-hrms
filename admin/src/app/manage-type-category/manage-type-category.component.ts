@@ -43,13 +43,11 @@ export class ManageTypeCategoryComponent implements OnInit {
   }
   getTypeCatData() {
     this.prodServ.getTypeCat().subscribe(res => {
-      console.log(res);
       let typeCategories = res.result
       for (let i = 0; i < typeCategories.length; i++) {
         typeCategories[i]['sr_no'] = i + 1
       }
       this.typeCategories = typeCategories;
-      console.log(typeCategories)
     })
   }
 }

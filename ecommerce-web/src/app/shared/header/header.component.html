@@ -1,100 +1,103 @@
 <header class="banner" role="banner">
 
-  <nav class="navbar" role="navigation" aria-label="menu">
+  <nav class="navbar px-2" role="navigation" aria-label="menu">
+    <div class="d-flex">
+      <a class="logo" href="javascript:void(0)"><strong>Bloom</strong> Craft</a>
+      <ul class="menu">
+        <li class="dropdown">
+          <a class="mainLink" href="javascript:void(0)">
+            Men
+            <!--SVG dropdown icon-->
+            <svg class="icon" width="14" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+              <path
+                d="M151.5 347.8L3.5 201c-4.7-4.7-4.7-12.3 0-17l19.8-19.8c4.7-4.7 12.3-4.7 17 0L160 282.7l119.7-118.5c4.7-4.7 12.3-4.7 17 0l19.8 19.8c4.7 4.7 4.7 12.3 0 17l-148 146.8c-4.7 4.7-12.3 4.7-17 0z" />
+            </svg>
+          </a>
+          <!--Start of Dropdown-->
+          <div class="dropdown-div" style="display: none;">
+            <ul class="dropdown-nav">
+              <li class="outerList">
+                <p class="p-2 mb-0 fs-6 fw-bold outerHead"> Topwear </p>
+                <ul class="dropdown-inner-nav">
+                  <li class="innerList"><a href="javascript:void(0)" class="">Shirts</a></li>
+                  <li class="innerList"><a href="javascript:void(0)" class="">Sweaters</a></li>
+                </ul>
+              </li>
+              <li class="outerList">
+                <p class="p-2 mb-0 fs-6 fw-bold outerHead"> Bottomwear </p>
+                <ul class="dropdown-inner-nav">
+                  <li class="innerList"><a href="javascript:void(0)" class="">Pants</a></li>
+                  <li class="innerList"><a href="javascript:void(0)" class="">Trousers</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li class="dropdown">
+          <a class="mainLink" href="javascript:void(0)">
+            Women
+            <!--SVG dropdown icon-->
+            <svg class="icon" width="14" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+              <path
+                d="M151.5 347.8L3.5 201c-4.7-4.7-4.7-12.3 0-17l19.8-19.8c4.7-4.7 12.3-4.7 17 0L160 282.7l119.7-118.5c4.7-4.7 12.3-4.7 17 0l19.8 19.8c4.7 4.7 4.7 12.3 0 17l-148 146.8c-4.7 4.7-12.3 4.7-17 0z" />
+            </svg>
+          </a>
+          <!--Start of Dropdown-->
+          <div class="dropdown-div" style="display: none;">
+            <ul class="dropdown-nav">
+              <li class="outerList">
+                <p class="p-2 mb-0 fs-6 fw-bold outerHead"> Topwear </p>
+                <ul class="dropdown-inner-nav">
+                  <li class="innerList"><a href="javascript:void(0)" class="">Kurtis</a></li>
+                  <li class="innerList"><a href="javascript:void(0)" class="">Tops</a></li>
+                </ul>
+              </li>
+              <li class="outerList">
+                <p class="p-2 mb-0 fs-6 fw-bold outerHead"> Bottomwear </p>
+                <ul class="dropdown-inner-nav">
+                  <li class="innerList"><a href="javascript:void(0)" class="">Leggings</a></li>
+                  <li class="innerList"><a href="javascript:void(0)" class="">Trousers</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li class="dropdown">
+          <a class="mainLink" href="javascript:void(0)">
+            Kids
+            <!--SVG dropdown icon-->
+            <svg class="icon" width="14" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+              <path
+                d="M151.5 347.8L3.5 201c-4.7-4.7-4.7-12.3 0-17l19.8-19.8c4.7-4.7 12.3-4.7 17 0L160 282.7l119.7-118.5c4.7-4.7 12.3-4.7 17 0l19.8 19.8c4.7 4.7 4.7 12.3 0 17l-148 146.8c-4.7 4.7-12.3 4.7-17 0z" />
+            </svg>
+          </a>
+          <!--Start of Dropdown-->
+          <div class="dropdown-div" style="display: none;">
+            <ul class="dropdown-nav">
+              <li class="outerList">
+                <p class="p-2 mb-0 fs-6 fw-bold outerHead"> Topwear </p>
+                <ul class="dropdown-inner-nav">
+                  <li class="innerList"><a href="javascript:void(0)" class="">Shirts</a></li>
+                  <li class="innerList"><a href="javascript:void(0)" class="">Sweaters</a></li>
+                </ul>
+              </li>
+              <li class="outerList">
+                <p class="p-2 mb-0 fs-6 fw-bold outerHead"> Bottomwear </p>
+                <ul class="dropdown-inner-nav">
+                  <li class="innerList"><a href="javascript:void(0)" class="">Pants</a></li>
+                  <li class="innerList"><a href="javascript:void(0)" class="">Trousers</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li><a class="mainLink" href="javascript:void(0)">Contact us</a></li>
+      </ul>
+    </div>
+    <a class="text-decoration-none font600" href="javascript:void(0)" data-bs-toggle="offcanvas"
+      data-bs-target="#offcanvasRight" (click)="removeBackdrop()" *ngIf="!isAuth">Login / Signup</a>
+    <a class="text-decoration-none font600" href="javascript:void(0)" (click)="logOut()" *ngIf="isAuth">Logout</a>
 
-    <a class="logo" href="javascript:void(0)"><strong>Bloom</strong> Craft</a>
-
-
-    <ul class="menu">
-      <li class="dropdown">
-        <a class="mainLink" href="javascript:void(0)">
-          Men
-          <!--SVG dropdown icon-->
-          <svg class="icon" width="14" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
-            <path
-              d="M151.5 347.8L3.5 201c-4.7-4.7-4.7-12.3 0-17l19.8-19.8c4.7-4.7 12.3-4.7 17 0L160 282.7l119.7-118.5c4.7-4.7 12.3-4.7 17 0l19.8 19.8c4.7 4.7 4.7 12.3 0 17l-148 146.8c-4.7 4.7-12.3 4.7-17 0z" />
-          </svg>
-        </a>
-        <!--Start of Dropdown-->
-        <div class="dropdown-div" style="display: none;">
-          <ul class="dropdown-nav">
-            <li class="outerList">
-              <p class="p-2 mb-0 fs-6 fw-bold outerHead"> Topwear </p>
-              <ul class="dropdown-inner-nav">
-                <li class="innerList"><a href="javascript:void(0)" class="">Shirts</a></li>
-                <li class="innerList"><a href="javascript:void(0)" class="">Sweaters</a></li>
-              </ul>
-            </li>
-            <li class="outerList">
-              <p class="p-2 mb-0 fs-6 fw-bold outerHead"> Bottomwear </p>
-              <ul class="dropdown-inner-nav">
-                <li class="innerList"><a href="javascript:void(0)" class="">Pants</a></li>
-                <li class="innerList"><a href="javascript:void(0)" class="">Trousers</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </li>
-      <li class="dropdown">
-        <a class="mainLink" href="javascript:void(0)">
-          Women
-          <!--SVG dropdown icon-->
-          <svg class="icon" width="14" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
-            <path
-              d="M151.5 347.8L3.5 201c-4.7-4.7-4.7-12.3 0-17l19.8-19.8c4.7-4.7 12.3-4.7 17 0L160 282.7l119.7-118.5c4.7-4.7 12.3-4.7 17 0l19.8 19.8c4.7 4.7 4.7 12.3 0 17l-148 146.8c-4.7 4.7-12.3 4.7-17 0z" />
-          </svg>
-        </a>
-        <!--Start of Dropdown-->
-        <div class="dropdown-div" style="display: none;">
-          <ul class="dropdown-nav">
-            <li class="outerList">
-              <p class="p-2 mb-0 fs-6 fw-bold outerHead"> Topwear </p>
-              <ul class="dropdown-inner-nav">
-                <li class="innerList"><a href="javascript:void(0)" class="">Kurtis</a></li>
-                <li class="innerList"><a href="javascript:void(0)" class="">Tops</a></li>
-              </ul>
-            </li>
-            <li class="outerList">
-              <p class="p-2 mb-0 fs-6 fw-bold outerHead"> Bottomwear </p>
-              <ul class="dropdown-inner-nav">
-                <li class="innerList"><a href="javascript:void(0)" class="">Leggings</a></li>
-                <li class="innerList"><a href="javascript:void(0)" class="">Trousers</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </li>
-      <li class="dropdown">
-        <a class="mainLink" href="javascript:void(0)">
-          Kids
-          <!--SVG dropdown icon-->
-          <svg class="icon" width="14" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
-            <path
-              d="M151.5 347.8L3.5 201c-4.7-4.7-4.7-12.3 0-17l19.8-19.8c4.7-4.7 12.3-4.7 17 0L160 282.7l119.7-118.5c4.7-4.7 12.3-4.7 17 0l19.8 19.8c4.7 4.7 4.7 12.3 0 17l-148 146.8c-4.7 4.7-12.3 4.7-17 0z" />
-          </svg>
-        </a>
-        <!--Start of Dropdown-->
-        <div class="dropdown-div" style="display: none;">
-          <ul class="dropdown-nav">
-            <li class="outerList">
-              <p class="p-2 mb-0 fs-6 fw-bold outerHead"> Topwear </p>
-              <ul class="dropdown-inner-nav">
-                <li class="innerList"><a href="javascript:void(0)" class="">Shirts</a></li>
-                <li class="innerList"><a href="javascript:void(0)" class="">Sweaters</a></li>
-              </ul>
-            </li>
-            <li class="outerList">
-              <p class="p-2 mb-0 fs-6 fw-bold outerHead"> Bottomwear </p>
-              <ul class="dropdown-inner-nav">
-                <li class="innerList"><a href="javascript:void(0)" class="">Pants</a></li>
-                <li class="innerList"><a href="javascript:void(0)" class="">Trousers</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </li>
-      <li><a class="mainLink" href="javascript:void(0)">Contact us</a></li>
-    </ul>
   </nav>
 </header>
 
@@ -114,5 +117,16 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title font-theme" id="offcanvasRightLabel">{{ loginComp?'Login':'Signup'}}</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <app-signup *ngIf="!loginComp" (navLogin)="changeToLogin()"></app-signup>
+    <app-login *ngIf="loginComp" (navSignup)="changeToSignup()"></app-login>
   </div>
 </div>

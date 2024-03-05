@@ -13,3 +13,27 @@
 .font600 {
   font-weight: 600;
 }
+.font-theme {
+  color: #45bbb6;
+}
+.btn-theme:disabled {
+  background-color: #45bbb6 !important;
+  color: #fff !important;
+  opacity: 0.5 !important;
+}
+.btn-theme {
+  background-color: #45bbb6;
+  color: #fff;
+}
+.btn-theme:hover {
+  background-color: #39dad2;
+  color: #fff;
+}
+.btn-theme:active {
+  background-color: #39dad2 !important;
+  color: #fff !important;
+}
+.btn-theme:focus-visible {
+  background-color: #39dad2 !important;
+  color: #fff !important;
+}

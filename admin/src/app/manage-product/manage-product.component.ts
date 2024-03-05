@@ -20,7 +20,6 @@ export class ManageProductComponent implements OnInit {
     this.prodServ.fetchActiveProducts()
     this.prodServ.fetchActiveProductsUpdateListener().subscribe(products => {
       this.products = products;
-      console.log(products);
     })
   }
   addProduct() {
@@ -31,12 +30,11 @@ export class ManageProductComponent implements OnInit {
       catId: this.productForm.form.controls['cat_id'].value,
       isActive: this.productForm.form.controls['isActive'].value,
       productName: this.productForm.form.controls['prod_name'].value,
-      description: this.productForm.form.controls['prod_desc'].value,
+      brand_name: this.productForm.form.controls['brand_name'].value,
       price: this.productForm.form.controls['prod_price'].value
     }
     this.prodServ.addProduct(product);
     this.productForm.form.reset();
-    console.log(this.productForm)
   }
   selectGrpCat() {
     this.prodServ.getActiveTypeCat(this.productForm.form.controls['grp_cat_id'].value).subscribe(catgrs => this.product_type_categories = catgrs.result);
@@ -44,7 +42,6 @@ export class ManageProductComponent implements OnInit {
   selectTypeCat() {
     this.prodServ.getActiveCat(this.productForm.form.controls['grp_cat_id'].value, this.productForm.form.controls['type_cat_id'].value).subscribe(catgrs => {
       this.product_categories = catgrs.result;
-      console.log(catgrs);
     });
   }
 }

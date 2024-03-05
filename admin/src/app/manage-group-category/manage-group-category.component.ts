@@ -41,7 +41,6 @@ export class ManageGroupCategoryComponent implements OnInit {
   }
   getGroupData() {
     this.prodServ.getGroupCate().subscribe(res => {
-      console.log(res);
       let groupCategories = res.result
       for (let i = 0; i < groupCategories.length; i++) {
         groupCategories[i]['sr_no'] = i + 1

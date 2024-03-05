@@ -1,0 +1,91 @@
+<div class="row justify-content-center">
+  <div class="col-sm-12">
+
+    <form #emailPhoneForm="ngForm" (ngSubmit)="sendOtp()" [ngClass]="emailPhoneForm?.submitted?'d-none':'d-block'">
+      <div class="row">
+        <div class="col-sm-12">
+          <label class="mb-1">Mobile Number or Email <span class="text-danger">*</span> </label>
+          <input type="email" class="form-control" placeholder="Enter mobile number or email" required ngModel email
+            (change)="emailChange();preventNext=true" name="emailMobile" #emailMobile="ngModel" max="30" maxlength="30">
+          <small class="text-danger" *ngIf="!emailMobile.valid && emailMobile.touched">Please enter a valid
+            email</small>
+          <small *ngIf="emailExists" class="text-danger">Email already exists</small>
+        </div>
+        <div class="col-sm-12 text-center mt-2">
+          <button type="submit" class="btn btn-theme btn-sm" [disabled]="!emailPhoneForm.valid || preventNext">Send
+            OTP</button>
+        </div>
+      </div>
+    </form>
+
+    <form #otpForm="ngForm" (ngSubmit)="verifyOtp()" *ngIf="emailPhoneForm?.submitted && !otpVerified">
+      <div class="row">
+        <div class="col-sm-12">
+          <label class="mb-1">OTP<span class="text-danger">*</span> </label>
+          <input type="text" class="form-control" placeholder="Enter 6-digit OTP" required ngModel name="otp"
+            #otp="ngModel" appNumericOnly min="6" max="6" minlength="6" maxlength="6" required>
+          <small class="text-danger" *ngIf="!otp.valid && otp.touched">Please enter a valid 6-digit otp</small>
+        </div>
+        <div class="col-sm-12 mt-2">
+          <button class="btn btn-theme btn-sm" type="submit" [disabled]="!otpForm.valid">Verify OTP</button>
+        </div>
+      </div>
+    </form>
+
+    <form #signupForm="ngForm" (ngSubmit)="signup()" *ngIf="otpVerified">
+      <div class="row">
+        <div class="col-sm-12 mb-3">
+          <label class="mb-1">Name<span class="text-danger">*</span> </label>
+          <input type="text" class="form-control" placeholder="Type your name" required ngModel name="name"
+            #name="ngModel" min="3" max="25" minlength="3" maxlength="25" (change)="checkName()">
+          <small class="text-danger" *ngIf="!name.valid && name.touched || !validName">Please type your name</small>
+        </div>
+        <!-- <div class="col-sm-12 mb-3" *ngIf="verifyVia==='email'">
+          <label class="mb-1">Mobile Number<span class="text-danger">*</span> </label>
+          <input type="text" class="form-control" placeholder="Enter your phone number" required ngModel appNumericOnly
+            min="10" max="10" minlength="10" maxlength="10" name="mobileNum" #mobileNum="ngModel"
+            (change)="checkPhone()">
+          <small class="text-danger" *ngIf="!mobileNum.valid && mobileNum.touched ">Please enter
+            correct
+            mobile
+            number</small>
+        </div> -->
+        <!-- <div class="col-sm-12 mb-3" *ngIf="verifyVia==='phone'">
+          <label class="mb-1">Email Address<span class="text-danger">*</span> </label>
+          <input type="email" class="form-control" placeholder="Enter email address" required ngModel email name="email"
+            #email="ngModel" (change)="checkEmail()">
+          <small class="text-danger" *ngIf="!email.valid && email.touched || !newvalidEmail">Please enter correct
+            email</small>
+        </div> -->
+        <div class="col-sm-12 mb-3">
+          <label class="mb-1">Password<span class="text-danger">*</span> </label>
+          <input type="password" class="form-control" placeholder="Set a password" required ngModel name="password"
+            #password="ngModel" (change)="checkPassword()">
+          <small class="text-danger" *ngIf="!password.valid && password.touched || !validPassword">Please enter a valid
+            password</small>
+        </div>
+        <div class="col-sm-12 mb-4">
+          <label class="mb-1">Password<span class="text-danger">*</span> </label>
+          <input type="password" class="form-control" placeholder="Confirm Password" required ngModel name="confPass"
+            #confPass="ngModel" (change)="matchPass()">
+          <small class="text-danger"
+            *ngIf="!confPass.valid && confPass.touched || confPass.touched && !passMatched">Both passwords are not
+            matched</small>
+        </div>
+        <div class="col-sm-12 text-center">
+          <button class="btn btn-theme px-5 rounded-0 btn-sm" type="submit"
+            [disabled]="!signupForm.valid || !validName || !newvalidEmail  ||!validPassword || !passMatched">Signup</button>
+        </div>
+      </div>
+    </form>
+
+    <div class="row mt-2">
+      <div class="col-sm-12 text-center">
+        <p class="mb-0">
+          Already have an account?
+          <a href="javascript:void(0)" class="text-decoration-none font600" (click)="navToLogin()">Login</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

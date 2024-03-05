@@ -18,19 +18,14 @@ export class AuthService {
   login(email: string, password: string) {
     const credentials = { email: email, password: password }
     this.http.post<any>(this.auth_url, credentials).subscribe(response => {
-      console.log(response)
       if (response.status === 200) {
         this.setAuth(true, response.token);
         this.router.navigate(['/dashboard']);
         this.toastr.success('Logged in sucessfully!', 'Welcome');
       }
       else {
-        console.log('hi bhai')
       }
     }, error => {
-      console.log(error);
-      console.log(error.error.message);
-      console.log(error.statusText);
       this.toastr.error(error.error.message, error.statusText);
     })
   }

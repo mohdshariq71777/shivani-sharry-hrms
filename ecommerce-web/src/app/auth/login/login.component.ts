@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/_services/auth.service';
 
@@ -10,10 +10,14 @@ import { AuthService } from 'src/app/_services/auth.service';
 export class LoginComponent implements OnInit {
   constructor(private authServ: AuthService) { }
   @ViewChild('loginForm') loginForm: NgForm | undefined;
+  @Output() navSignup: EventEmitter<boolean> = new EventEmitter<boolean>();
   ngOnInit(): void {
 
   }
   login() {
     this.authServ.login(this.loginForm?.controls['email'].value, this.loginForm?.controls['password'].value)
+  }
+  navToSignup() {
+    this.navSignup.emit(true);
   }
 }

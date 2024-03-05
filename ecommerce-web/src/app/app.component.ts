@@ -8,7 +8,7 @@ import * as CryptoJS from 'crypto-js';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'frontend';
+  title = 'bloomcraft';
   constructor(private authService: AuthService, private router: Router) { }
   ngOnInit() {
     if (!sessionStorage.getItem('token')) {

@@ -29,7 +29,6 @@ export class ChangePasswordComponent implements OnInit {
     this.changePassServ.verifyOtp(Number(this.verifyOtpForm.controls['otp'].value));
   }
   setPassword() {
-    console.log(this.setPasswordForm.form.controls['newPass'].value, this.setPasswordForm.form.controls['cnfmPass'].value)
     if (this.setPasswordForm.form.controls['newPass'].value === this.setPasswordForm.form.controls['cnfmPass'].value) {
       this.newSetPassValue = this.setPasswordForm.form.controls['newPass'].value;
       this.changePassServ.setNewPassword(this.newSetPassValue);
