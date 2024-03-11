@@ -1,0 +1,147 @@
+/* .customdropdownmenu b.float-end ,.customdropdownmenu ul.submenu.dropdown-menu{
+    display: none !important;
+} */
+
+/* button#dropdownMenuButton11 {
+    pointer-events: none !important;
+} */
+
+/* Feel free to change duration  */
+.animated {
+  -webkit-animation-duration: 1000 ms;
+  animation-duration: 1000 ms;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+/* .owl-animated-out - only for current item */
+/* This is very important class. Use z-index if you want move Out item above In item */
+.fadeIn {
+  z-index: 1;
+}
+/* .owl-animated-in - only for upcoming item
+  /* This is very important class. Use z-index if you want move In item above Out item */
+.fadeOut {
+  z-index: 0;
+}
+/* .fadeOut is style taken from Animation.css and this is how it looks in owl.carousel.css:  */
+.fadeOut {
+  animation: fadeOut ease 8s;
+  -webkit-animation: fadeOut ease 8s;
+  -moz-animation: fadeOut ease 8s;
+  -o-animation: fadeOut ease 8s;
+  -ms-animation: fadeOut ease 8s;
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@-moz-keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@-o-keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@-ms-keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* New Code */
+
+.banner-right .card {
+  height: 147px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media screen and (min-width: 1200px) {
+  #slider-home {
+    min-height: 315px;
+  }
+  .slider-banner img {
+    height: 160px;
+  }
+}
+
+.link-theme {
+  color: #45bbb6;
+  text-decoration: none;
+}
+
+/* No products found start */
+.empty-state {
+  width: 750px;
+  margin: 40px auto;
+  /* background: #ffffff;
+  box-shadow: 1px 2px 10px #e1e3ec;
+  border-radius: 4px; */
+}
+.empty-state__content {
+  padding: 48px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.empty-state__content .empty-state__icon img {
+  width: 170px;
+}
+.empty-state__content .empty-state__icon {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  border-radius: 200px;
+  justify-content: center;
+  background-color: #f7fafc;
+  box-shadow: 0px 2px 1px #e1e3ec;
+}
+.empty-state .empty-state__message {
+  color: #fb8272;
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-top: 0.85rem;
+}
+
+.empty-state .empty-state__help {
+  color: #a2a5b9;
+  font-size: 0.875rem;
+}
+.credit {
+  color: #a2a5b9;
+  font-size: 0.75rem;
+  text-align: center;
+}
+.credit a {
+  color: #444;
+}
+/* No products found end */

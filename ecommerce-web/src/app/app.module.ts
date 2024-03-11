@@ -15,6 +15,10 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomePageComponent } from './home-page/home-page.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { ProductListComponent } from './product-list/product-list.component';
+import { ErrorPageComponent } from './error-page/error-page.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
+import { NgxSplideModule } from 'ngx-splide';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +27,10 @@ import { SignupComponent } from './auth/signup/signup.component';
     LoginComponent,
     ChangePasswordComponent,
     HomePageComponent,
-    SignupComponent
+    SignupComponent,
+    ProductListComponent,
+    ErrorPageComponent,
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +43,8 @@ import { SignupComponent } from './auth/signup/signup.component';
       positionClass: 'toast-top-center',
       preventDuplicates: true,
     }),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxSplideModule
   ],
   providers: [
     AuthGuard,

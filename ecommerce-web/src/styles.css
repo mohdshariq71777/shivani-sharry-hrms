@@ -21,6 +21,9 @@
   color: #fff !important;
   opacity: 0.5 !important;
 }
+.text-theme {
+  color: #45bbb6;
+}
 .btn-theme {
   background-color: #45bbb6;
   color: #fff;
@@ -36,4 +39,29 @@
 .btn-theme:focus-visible {
   background-color: #39dad2 !important;
   color: #fff !important;
+}
+.btn-theme-light {
+  background: #8afff5;
+  border-color: #44bdb8;
+}
+.btn-theme-light:hover {
+  background-color: #39dad2;
+  border-color: #44bdb8;
+}
+.btn-theme-light:active {
+  background-color: #39dad2 !important;
+  border-color: #44bdb8;
+}
+.btn-theme-light:focus-visible {
+  background-color: #39dad2 !important;
+  border-color: #44bdb8;
+}
+.text-fetch {
+  color: #d57676 !important;
+}
+.overflow-y-auto {
+  overflow-y: auto;
+}
+.cursor-pointer {
+  cursor: pointer;
 }

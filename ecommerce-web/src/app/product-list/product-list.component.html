@@ -1,0 +1,38 @@
+<app-header></app-header>
+<main>
+  <div class="container mnwidth90plus py-3">
+    <section class="sectionthree mb-2">
+      <div class="container-fluid">
+        <ng-container *ngIf="product_list.length>0">
+          <p class="mb-3">Showing <span class="text-theme fw-bold">{{product_list.length}}</span>
+            {{product_list.length>1?'products':'product'}}</p>
+          <div class="row row-cols-lg-5 row-cols-2 gy-3">
+            <div class="col mb-0" *ngFor="let prod of product_list">
+              <a href="javascript:void(0)" class="text-decoration-none" (click)="sendToDetails(prod.product_id)">
+                <div class="card shadow-none rounded-0 h-100">
+                  <div class="product-img"><img alt="product_name" src="./../../assets/images/puma-shoe.png"
+                      class="img-fluid"></div>
+                  <div class="card-body h-100">
+                    <h4 class="mb-1 productprice">₹{{prod.price}}</h4>
+                    <p class="font9 productdesc mb-0">{{prod.brand_name}}</p>
+                    <h6 class="font600 mb-1">{{prod.product_name}}</h6>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="product_list.length<=0">
+          <div class="empty-state">
+            <div class="empty-state__content">
+              <div class="empty-state__icon">
+                <img src="./../../assets/images/no-products-found.png" alt="">
+              </div>
+              <div class="empty-state__message">No products found for the selected category</div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </section>
+  </div>
+</main>

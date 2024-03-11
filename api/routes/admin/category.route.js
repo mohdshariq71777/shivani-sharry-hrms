@@ -8,9 +8,9 @@ router.get('/admin/get-group-category', categoryController.getAllGroupCategory);
 router.get('/admin/get-active-group-category', categoryController.getActiveGroupCategory);
 router.post('/admin/add-type-category', categoryController.addTypeCategory);
 router.get('/admin/get-type-category', categoryController.getAllTypeCategory)
-router.post('/admin/get-active-type-category', categoryController.getActiveTypeCategory)
+router.get('/admin/get-active-type-category', categoryController.getActiveTypeCategory)
 router.post('/admin/add-category', categoryController.addCategory);
 router.get('/admin/get-category', categoryController.getAllCategory);
-router.post('/admin/get-active-category', categoryController.getActiveCategory);
+router.get('/admin/get-active-category', categoryController.getActiveCategory);
 
 module.exports = router;

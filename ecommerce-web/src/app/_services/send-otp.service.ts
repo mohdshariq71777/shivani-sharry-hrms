@@ -14,10 +14,8 @@ export class SendOtpService {
   otpVerifiedSub = new Subject<boolean>();
   constructor(private http: HttpClient, private toastr: ToastrService) { }
   sendThroughMail(mail_id: string) {
-    console.log(mail_id);
     this.http.post<{ otp: number }>(this.mail_url, { email_id: mail_id }).subscribe(res => {
       this.setOtp(res.otp)
-      console.log(res.otp);
     })
   }
   // sendThroughPhone(phoneNum: string) {

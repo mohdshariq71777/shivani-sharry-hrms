@@ -70,8 +70,8 @@ module.exports = {
         });
     },
     getActiveTypeCategory: async (req, res) => {
-        let grpCat = req.body.grp_cat_id;
-        const query = `select * from product_type_category where is_active=1 and group_category_id='${grpCat}' `;
+        let grpCat = req.query.grp_cat_id;
+        const query = `select type_category_id,type_category_name from product_type_category where is_active=1 and group_category_id='${grpCat}' `;
         db.query(query, (err, result) => {
             if (err) {
                 return res.status(500).json({ error: 'Error' });
@@ -117,9 +117,9 @@ module.exports = {
         });
     },
     getActiveCategory: async (req, res) => {
-        let grpCat = req.body.grp_cat_id;
-        let typeCat = req.body.type_cat_id;
-        const query = `select * from product_category where is_active=1 and group_category_id='${grpCat}' and type_category_id='${typeCat}'`;
+        let grpCat = req.query.grp_cat_id;
+        let typeCat = req.query.type_cat_id;
+        const query = `select category_name,category_id from product_category where is_active=1 and group_category_id='${grpCat}' and type_category_id='${typeCat}'`;
         db.query(query, (err, result) => {
             if (err) {
                 return res.status(500).json({ error: 'Error' });

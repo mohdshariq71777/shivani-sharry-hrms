@@ -1,4 +1,4 @@
 export interface GroupCategory {
-  grpCatName: string,
-  isActive: boolean
+  group_category_name: string,
+  group_category_id: number
 }

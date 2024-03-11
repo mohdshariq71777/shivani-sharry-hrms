@@ -1,19 +1,45 @@
 <header class="banner" role="banner">
 
   <nav class="navbar px-2" role="navigation" aria-label="menu">
-    <div class="d-flex">
-      <a class="logo" href="javascript:void(0)"><strong>Bloom</strong> Craft</a>
+    <div class="d-flex align-items-center">
+      <a class="logo" href="javascript:void(0)" routerLink="/">
+        <strong>Bloom</strong> Craft
+      </a>
       <ul class="menu">
-        <li class="dropdown">
-          <a class="mainLink" href="javascript:void(0)">
-            Men
-            <!--SVG dropdown icon-->
+        <li class="dropdown" *ngFor="let grp_cat of group_categories">
+          <a class="mainLink" href="javascript:void(0)" (mouseenter)="fetchTypeCatogory(grp_cat.group_category_id)">
+            {{grp_cat.group_category_name}}
             <svg class="icon" width="14" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
               <path
                 d="M151.5 347.8L3.5 201c-4.7-4.7-4.7-12.3 0-17l19.8-19.8c4.7-4.7 12.3-4.7 17 0L160 282.7l119.7-118.5c4.7-4.7 12.3-4.7 17 0l19.8 19.8c4.7 4.7 4.7 12.3 0 17l-148 146.8c-4.7 4.7-12.3 4.7-17 0z" />
             </svg>
           </a>
-          <!--Start of Dropdown-->
+          <div class="dropdown-div" style="display: none;">
+            <ul class="dropdown-nav">
+              <ng-container *ngFor="let typeCat of type_categories">
+                <li class="outerList">
+                  <p class="p-2 mb-0 fs-6 fw-bold outerHead"> {{typeCat.type_category_name}} </p>
+                  <ul class="dropdown-inner-nav">
+                    <li class="innerList" *ngFor="let catg of typeCat.categories"
+                      (click)="goTo(grp_cat.group_category_id,typeCat.type_category_id,catg.category_id)">
+                      <a href="javascript:void(0)" class="">{{catg.category_name}}</a>
+                    </li>
+                  </ul>
+                </li>
+              </ng-container>
+            </ul>
+          </div>
+        </li>
+      </ul>
+      <!-- <ul class="menu">
+        <li class="dropdown">
+          <a class="mainLink" href="javascript:void(0)">
+            Men
+            <svg class="icon" width="14" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+              <path
+                d="M151.5 347.8L3.5 201c-4.7-4.7-4.7-12.3 0-17l19.8-19.8c4.7-4.7 12.3-4.7 17 0L160 282.7l119.7-118.5c4.7-4.7 12.3-4.7 17 0l19.8 19.8c4.7 4.7 4.7 12.3 0 17l-148 146.8c-4.7 4.7-12.3 4.7-17 0z" />
+            </svg>
+          </a>
           <div class="dropdown-div" style="display: none;">
             <ul class="dropdown-nav">
               <li class="outerList">
@@ -36,13 +62,11 @@
         <li class="dropdown">
           <a class="mainLink" href="javascript:void(0)">
             Women
-            <!--SVG dropdown icon-->
             <svg class="icon" width="14" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
               <path
                 d="M151.5 347.8L3.5 201c-4.7-4.7-4.7-12.3 0-17l19.8-19.8c4.7-4.7 12.3-4.7 17 0L160 282.7l119.7-118.5c4.7-4.7 12.3-4.7 17 0l19.8 19.8c4.7 4.7 4.7 12.3 0 17l-148 146.8c-4.7 4.7-12.3 4.7-17 0z" />
             </svg>
           </a>
-          <!--Start of Dropdown-->
           <div class="dropdown-div" style="display: none;">
             <ul class="dropdown-nav">
               <li class="outerList">
@@ -65,13 +89,11 @@
         <li class="dropdown">
           <a class="mainLink" href="javascript:void(0)">
             Kids
-            <!--SVG dropdown icon-->
             <svg class="icon" width="14" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
               <path
                 d="M151.5 347.8L3.5 201c-4.7-4.7-4.7-12.3 0-17l19.8-19.8c4.7-4.7 12.3-4.7 17 0L160 282.7l119.7-118.5c4.7-4.7 12.3-4.7 17 0l19.8 19.8c4.7 4.7 4.7 12.3 0 17l-148 146.8c-4.7 4.7-12.3 4.7-17 0z" />
             </svg>
           </a>
-          <!--Start of Dropdown-->
           <div class="dropdown-div" style="display: none;">
             <ul class="dropdown-nav">
               <li class="outerList">
@@ -92,16 +114,17 @@
           </div>
         </li>
         <li><a class="mainLink" href="javascript:void(0)">Contact us</a></li>
-      </ul>
+      </ul> -->
     </div>
     <a class="text-decoration-none font600" href="javascript:void(0)" data-bs-toggle="offcanvas"
-      data-bs-target="#offcanvasRight" (click)="removeBackdrop()" *ngIf="!isAuth">Login / Signup</a>
-    <a class="text-decoration-none font600" href="javascript:void(0)" (click)="logOut()" *ngIf="isAuth">Logout</a>
+      data-bs-target="#authCanvas" (click)="removeBackdrop()" *ngIf="!isAuth">Login / Signup</a>
+    <a *ngIf="isAuth" class="text-decoration-none font600" href="javascript:void(0)" data-bs-toggle="modal"
+      data-bs-target="#confirmModal">Logout</a>
 
   </nav>
 </header>
 
-<div class="modal" tabindex="-1" id="confirmModal">
+<div class="modal fade" tabindex="-1" id="confirmModal">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body">
@@ -112,17 +135,17 @@
         <p class="text-center">Are you sure you want to log out?</p>
         <div class="mt-3 text-center">
           <button type="button" class="btn btn-sm px-3 btn-secondary me-1" data-bs-dismiss="modal">No</button>
-          <button type="button" class="btn btn-sm px-3 btn-primary ms-1" (click)="logOut()"
-            data-bs-dismiss="modal">Yes</button>
+          <button type="button" class="btn btn-sm px-3 btn-primary ms-1" data-bs-dismiss="modal"
+            (click)="logOut()">Yes</button>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight">
+<div class="offcanvas offcanvas-end" #authCanvas tabindex="-1" id="authCanvas">
   <div class="offcanvas-header">
-    <h5 class="offcanvas-title font-theme" id="offcanvasRightLabel">{{ loginComp?'Login':'Signup'}}</h5>
+    <h5 class="offcanvas-title font-theme" id="authCanvasLabel">{{ loginComp?'Login':'Signup'}}</h5>
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body">

@@ -18,28 +18,21 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router, private toastr: ToastrService) { };
   signup(user: User) {
     this.http.post<{ message: string }>(`${this.backend_url}/signup`, user).subscribe(res => {
-      console.log(res.message);
     }, err => {
-      // console.log(err)
       return
     })
   }
   verifyEmail(inpEmail: string) {
-    // Replace 'your-api-endpoint' with your actual API endpoint
     return this.http.post<{ message: string }>(`${this.backend_url}/check-email`, { email: inpEmail });
   }
   login(email: string, password: string) {
     const credentials = { email: email, password: password }
     this.http.post<{ token: string, expiresIn: number, name: string }>(`${this.backend_url}/login`, credentials).subscribe(response => {
-      console.log(response)
       this.setAuth(true, response.token);
-      // this.router.navigate(['/dashboard']);
       this.toastr.success('Logged in sucessfully!', 'Welcome');
-
+      document.querySelector('#authCanvas').classList.remove('show');
+      document.querySelector('.offcanvas-backdrop').remove();
     }, error => {
-      console.log(error);
-      console.log(error.error.message);
-      console.log(error.statusText);
       this.toastr.error(error.error.message, error.statusText);
     })
   }

@@ -24,6 +24,7 @@ export class SignupComponent implements OnInit {
   validPassword: boolean = true;
   canSendOtp: boolean = false;
   passMatched: boolean = false;
+  searchingAvail: boolean = false;
   constructor(private authServ: AuthService, private toastr: ToastrService, private otpService: SendOtpService) { }
   @ViewChild('signupForm') signupForm: NgForm | undefined;
   @ViewChild('emailPhoneForm') emailPhoneForm: NgForm | undefined;
@@ -32,28 +33,32 @@ export class SignupComponent implements OnInit {
   @Output() navLogin = new EventEmitter<boolean>(false);
   private searchSubject: Subject<string> = new Subject<string>();
   ngOnInit(): void {
+    if (this.emailPhoneForm?.form.controls['emailMobile'].value.length > 0 && this.emailPhoneForm?.form.controls['emailMobile'].status === 'VALID') {
+      this.searchingAvail = true;
+    }
     this.otpService.otpVerifiedSub.subscribe(otpStatus => this.otpVerified = otpStatus);
     this.searchSubject.pipe(
       debounceTime(2000), // Debounce for 2 seconds
       distinctUntilChanged(), // Only emit distinct values
       switchMap(() => this.authServ.verifyEmail(this.emailPhoneForm.form.controls['emailMobile'].value)) // Make API call
     ).subscribe((result: { status: number, message: string }) => {
-      console.log(result);
       this.preventNext = true;
+      this.searchingAvail = false;
       if (result.status !== 409) {
-        console.log('Not exists')
         this.emailExists = false;
         this.preventNext = false;
+
       }
       else {
         this.emailExists = true;
         this.preventNext = true;
-        console.log('Exists')
       }
     });
   }
   emailChange() {
-    this.preventNext = true;
+    if (this.emailPhoneForm?.form.controls['emailMobile'].value.length > 0 && this.emailPhoneForm?.form.controls['emailMobile'].status === 'VALID') {
+      this.searchingAvail = true;
+    }
     this.searchSubject.next(this.emailPhoneForm.form.controls['emailMobile'].value);
     // const emailMobilePattern = /^(?=.{1,30}$)(?:[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}|[6-9]\d{9})$/;
     let emailPattern = /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/;
@@ -96,7 +101,6 @@ export class SignupComponent implements OnInit {
   }
   matchPass() {
     // if (this.validPassword) {
-    console.log(this.signupForm.form.controls['password'].value === this.signupForm.form.controls['confPass'].value);
     this.passMatched = this.signupForm.form.controls['password'].value === this.signupForm.form.controls['confPass'].value ? true : false;
     // }
   }
@@ -129,7 +133,6 @@ export class SignupComponent implements OnInit {
         email: this.verifyVia === 'email' ? this.emailPhoneForm.form.controls['emailMobile'].value : this.signupForm.form.controls['email'].value,
       }
       this.authServ.signup(this.user);
-      console.log(this.user);
       this.signupForm.reset();
       this.password.nativeElement?.blur();
     }

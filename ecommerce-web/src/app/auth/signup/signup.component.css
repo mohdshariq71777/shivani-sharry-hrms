@@ -7,3 +7,16 @@
 a {
   color: #45bbb6;
 }
+.text-fetch {
+  font-weight: 500;
+}
+.myspinner.spinner-border {
+  --bs-spinner-width: 1rem;
+  --bs-spinner-height: 1rem;
+  --bs-spinner-vertical-align: -0.125em;
+  --bs-spinner-border-width: 0.15em;
+  --bs-spinner-animation-speed: 0.75s;
+  --bs-spinner-animation-name: spinner-border;
+  border: var(--bs-spinner-border-width) solid #d57676;
+  border-right-color: transparent;
+}

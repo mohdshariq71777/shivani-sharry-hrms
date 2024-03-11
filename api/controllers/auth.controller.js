@@ -3,33 +3,59 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const userLogin = (req, res, next) => {
     const email = req.body.email;
-    const password = req.body.password;
-    db.query(`Select email,name,password from users where email='${email}'`, (err, result, fields) => {
+    const reqpassword = req.body.password;
+
+    db.query(`SELECT IF(COUNT(*) = 0, 'false', 'true') AS result from users where email='${email}'`, (err, result, fields) => {
         if (err) {
-            return console.log(err);
+            return console.error(err)
         }
-        const encryptedPassword = result[0].password;
-        console.log(result)
-        console.log(encryptedPassword)
-        const loggedUser = {
-            name: result[0].name,
-            email: result[0].email,
-        };
-        bcrypt.compare(password, encryptedPassword).then((result) => {
-            token = jwt.sign(
-                { email: loggedUser.email },
-                'this_should_be_long_new',
-                { expiresIn: '1hr' }
-            );
-            res.status(200).json({
-                token: token,
-                expiresIn: 3600,
-                name: loggedUser.name
-            })
-        }).catch(error => {
-            res.status(401).json({ message: 'Authorization failed!', err: error });
-        })
-    });
+        else {
+            if (result[0].result !== 'true') {
+                return res.status(401).json({ message: 'Authorization failed! Please enter correct email' });
+            }
+            else {
+                db.query(`Select email,name,password from users where email='${email}'`, (err, result, fields) => {
+                    if (err) {
+                        return console.log(err);
+                    }
+                    console.log(result)
+                    if (result) {
+                        const encryptedPassword = result[0].password;
+                        console.log(result)
+                        console.log(encryptedPassword)
+                        const loggedUser = {
+                            name: result[0].name,
+                            email: result[0].email,
+                        };
+                        bcrypt.compare(reqpassword, encryptedPassword, (err, result) => {
+                            if (err) {
+                                return res.status(401).json({ message: 'Authorization failed!', err: error });
+                            }
+                            if (result) {
+                                console.log('hello')
+                                token = jwt.sign(
+                                    { email: loggedUser.email },
+                                    'this_should_be_long_new',
+                                    { expiresIn: '1hr' }
+                                );
+                                return res.status(200).json({
+                                    token: token,
+                                    expiresIn: 3600,
+                                    name: loggedUser.name
+                                })
+                            }
+                            else {
+                                return res.status(401).json({ message: 'Authorization failed! Please enter correct password' });
+                            }
+                        })
+                    }
+                    else {
+                        return res.status(401).json({ message: 'Authorization failed!' });
+                    }
+                });
+            }
+        }
+    })
 };
 const userSignup = (req, res, next) => {
     const name = req.body.name;

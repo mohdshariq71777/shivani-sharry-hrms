@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   }
   login() {
     this.authServ.login(this.loginForm?.controls['email'].value, this.loginForm?.controls['password'].value)
+
   }
   navToSignup() {
     this.navSignup.emit(true);

@@ -52,8 +52,8 @@ export class ProductService {
     return this.http.get<{ status: number, result: any[], message: string }>(`${this.api_url}/admin/get-type-category`);
   }
   getActiveTypeCat(grpCatId: number) {
-    const payload = { grp_cat_id: grpCatId }
-    return this.http.post<{ status: number, message: string, result: [] }>(`${this.api_url}/admin/get-active-type-category`, payload)
+    // const payload = { grp_cat_id: grpCatId }
+    return this.http.get<{ status: number, message: string, result: [] }>(`${this.api_url}/admin/get-active-type-category?grp_cat_id=${grpCatId}`,)
   }
   getCat() {
     return this.http.get<{ status: number, result: any[], message: string }>(`${this.api_url}/admin/get-category`);
@@ -67,8 +67,8 @@ export class ProductService {
     })
   }
   getActiveCat(grpCatId: number, typeCatId: number) {
-    const payload = { grp_cat_id: grpCatId, type_cat_id: typeCatId }
-    return this.http.post<{ status: number, message: string, result: [] }>(`${this.api_url}/admin/get-active-category`, payload)
+    // const payload = { grp_cat_id: grpCatId, type_cat_id: typeCatId }
+    return this.http.get<{ status: number, message: string, result: [] }>(`${this.api_url}/admin/get-active-category?grp_cat_id='${grpCatId}'&type_cat_id=${typeCatId}`)
   }
   addProduct(product: Product) {
     const product_payload = {
