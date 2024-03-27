@@ -47,6 +47,7 @@ export class ProductDetailsComponent implements OnInit {
   fetchProdById(product_id: number) {
     this.productService.getActiveProductById(product_id).subscribe(response => {
       this.fetchedProduct = response.result;
+      console.log(this.fetchedProduct);
     });
   }
 }

@@ -19,6 +19,7 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { NgxSplideModule } from 'ngx-splide';
+import { FooterComponent } from './shared/footer/footer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +31,8 @@ import { NgxSplideModule } from 'ngx-splide';
     SignupComponent,
     ProductListComponent,
     ErrorPageComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

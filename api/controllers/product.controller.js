@@ -3,9 +3,24 @@ module.exports = {
     getGroupCategoryActiveProducts: async (req, res) => {
         const groupCategoryId = req.query.groupCatId;
         const typeCategoryId = req.query.typeCatId;
-        const insertUserQuery = `Select product_name,brand_name,price,product_id from products where  group_category_id='${groupCategoryId}' and type_category_id='${typeCategoryId}' and is_active='1';`;
+        // const insertUserQuery = `Select pi.file_name,pi.file_path,p.product_name,p.brand_name,p.price,p.product_id,p.created_date from product_images pi inner join products p on p.product_id=pi.product_id where group_category_id='${groupCategoryId}' and type_category_id='${typeCategoryId}';`;
+        const insertUserQuery = `Select 
+        json_arrayagg( 
+        json_object( 
+        'file_name',pi.file_name,
+        'file_path',pi.file_path
+        )
+        ) as images,
+        p.product_name,p.brand_name,p.price,p.product_id
+        from
+        product_images pi
+        left join
+        products p
+        on p.product_id=pi.product_id
+        where group_category_id='${groupCategoryId}' and type_category_id='${typeCategoryId}' group by p.product_id;`;
         db.query(insertUserQuery, (err, result) => {
             if (err) {
+                console.log(err);
                 return res.status(500).json({ error: 'Error fetching products' });
             }
             res.status(200).json({
@@ -96,13 +111,21 @@ module.exports = {
         let typeCat = req.query.type_cat_id;
         let catId = req.query.cat_id;
         // const query = `select category_name,category_id from product_category where is_active=1 and group_category_id='${grpCat}' and type_category_id='${typeCat}'`;
-        const query = `Select product_name,brand_name,price,product_id from products where group_category_id='${grpCat}' and type_category_id='${typeCat}' and category_id='${catId}' and is_active='1'`;
+        // const query = `Select pi.file_name,pi.file_path, p.product_name,p.brand_name,p.price,p.product_id from product_images pi inner join products p on p.product_id=pi.product_id where p.group_category_id='${grpCat}' and p.type_category_id='${typeCat}' and p.category_id='${catId}';`;
+        const query = `Select
+        JSON_ARRAYAGG(
+            JSON_OBJECT(
+                'file_name',pi.file_name,
+            'file_path',pi.file_path
+            )
+        ) AS images, p.product_name,p.brand_name,p.price,p.product_id from product_images pi left join products p on p.product_id=pi.product_id where p.group_category_id='${grpCat}' and p.type_category_id='${typeCat}' and p.category_id='${catId}' group by p.product_id;`;
 
         db.query(query, (err, result) => {
             if (err) {
+                console.log(err);
                 return res.status(500).json({ error: 'Error' });
             }
-            console.log(result);
+            // console.log(result);
             res.status(200).json({
                 status: 200,
                 result: result,
@@ -112,7 +135,14 @@ module.exports = {
     },
     getActiveProductById: async (req, res) => {
         let productId = req.query.product_id;
-        const query = `Select product_name,price,brand_name from products where product_id='${productId}' and is_active='1'`;
+        const query = `Select 
+        JSON_ARRAYAGG(
+            JSON_OBJECT(
+                'file_name',pi.file_name,
+            'file_path',pi.file_path
+            )
+        ) AS images,p.product_name,p.price,p.brand_name from products as p left join 
+            product_images as pi on p.product_id=pi.product_id where p.product_id='${productId}' and p.is_active='1' group by p.product_id`;
 
         db.query(query, (err, result) => {
             if (err) {

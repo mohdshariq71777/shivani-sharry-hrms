@@ -22,13 +22,16 @@ export class ProductListComponent implements OnInit {
     })
     if (this.cat_id === null) {
       this.productService.fetchGroupCategoryActiveProducts(this.group_cat_id, this.type_cat_id).subscribe(res => {
-        this.product_list = res.result;
+        for (let i = res.result.length - 1; i >= 0; i--) {
+          this.product_list.push(res.result[i])
+        }
       });
     }
     else {
       this.productService.getActiveProducts(this.group_cat_id, this.type_cat_id, this.cat_id).subscribe(res => {
-        this.product_list = res.result;
-        // console.log(this.product_list);
+        for (let i = res.result.length - 1; i >= 0; i--) {
+          this.product_list.push(res.result[i])
+        }
       });
     }
   }

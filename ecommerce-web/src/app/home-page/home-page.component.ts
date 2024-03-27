@@ -15,19 +15,28 @@ export class HomePageComponent implements OnInit {
   ngOnInit(): void {
     this.productService.fetchGroupCategoryActiveProducts(7, 7).subscribe(res => {
       this.mensTopwearColl = res.result;
-      for (let i = 0; i <= 4; i++) {
-        this.mensTopwearColl5.push(this.mensTopwearColl[i])
+      if (this.mensTopwearColl.length > 5) {
+        for (let i = this.mensTopwearColl.length - 1; i > this.mensTopwearColl.length - 6; i--) {
+          this.mensTopwearColl5.push(this.mensTopwearColl[i])
+        }
+      }
+      else {
+        for (let i = this.mensTopwearColl.length - 1; i >= 0; i--) {
+          this.mensTopwearColl5.push(this.mensTopwearColl[i])
+        }
       }
     });
     this.productService.fetchGroupCategoryActiveProducts(9, 12).subscribe(res => {
       this.womensTopwearColl = res.result;
-      if (this.mensTopwearColl.length > 5) {
-        for (let i = 0; i <= 4; i++) {
+      if (this.womensTopwearColl.length > 5) {
+        for (let i = this.womensTopwearColl.length - 1; i > this.womensTopwearColl.length - 6; i--) {
           this.womensTopwearColl5.push(this.womensTopwearColl[i])
         }
       }
       else {
-        this.womensTopwearColl5 = res.result;
+        for (let i = this.womensTopwearColl.length - 1; i >= 0; i--) {
+          this.womensTopwearColl5.push(this.womensTopwearColl[i])
+        }
       }
     });
   }
@@ -52,5 +61,16 @@ export class HomePageComponent implements OnInit {
     this.router.navigate(['/product-details'], {
       queryParams: { productId }
     })
+  }
+  newProduct(date: string) {
+    const givenDate = new Date(date);
+    const currentDate = new Date();
+    let diffInMS = Number(currentDate) - Number(givenDate);
+    const diffInDays = diffInMS / (1000 * 60 * 60 * 24);
+    if (diffInDays > 2) {
+      return 'The given date is more than two days ago from today.';
+    } else {
+      return 'The given date is two days or fewer day(s) ago from today.';
+    }
   }
 }

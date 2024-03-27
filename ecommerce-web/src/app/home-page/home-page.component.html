@@ -1,59 +1,64 @@
 <app-header></app-header>
-<main>
+<main class="minHeightMain">
   <div class="container mnwidth90plus py-3">
-    <section class="sectionthree mb-2">
-      <div class="container-fluid">
-        <div class="card shadow-none">
-          <div class="card-header bg-white d-flex justify-content-between">
-            <h5 class="mb-0 fs-6">Male Topwear Collections</h5>
-            <a href="javascript:void(0)" class="link-theme font600" (click)="goTo(7,7)">See All
-              <i class="bi bi-chevron-right"></i></a>
-          </div>
-          <div class="card-body">
-            <div class="row row-cols-lg-5 row-cols-2 gy-2">
-              <div class="col mb-0" *ngFor="let prod of mensTopwearColl5">
-                <a href="javascript:void(0)" class="text-decoration-none" (click)="sendToDetails(prod.product_id)">
-                  <div class="card shadow-none rounded-0 h-100">
-                    <div class="product-img">
-                      <img alt="product_name" src="./../../assets/images/puma-shoe.png" class="img-fluid">
-                    </div>
-                    <div class="card-body h-100">
-                      <h4 class="mb-1 productprice">₹{{prod.price}}</h4>
-                      <p class="font9 productdesc mb-0">{{prod.brand_name}}</p>
-                      <h6 class="font600 mb-1">{{prod.product_name}}</h6>
-                    </div>
+    <section class="sectionthree mb-3">
+      <div class="card shadow-none">
+        <div class="card-header bg-white d-flex justify-content-between">
+          <h5 class="mb-0 fs-6">Male Topwear Collections</h5>
+          <a href="javascript:void(0)" class="link-theme font600" (click)="goTo(7,7)">See All
+            <i class="bi bi-chevron-right"></i></a>
+        </div>
+        <div class="card-body">
+          <div class="row row-cols-lg-5 row-cols-2 gy-2">
+            <div class="col mb-0" *ngFor="let prod of mensTopwearColl5">
+              <a href="javascript:void(0)" class="text-decoration-none" (click)="sendToDetails(prod.product_id)">
+                <div class="card shadow-none rounded-0 h-100">
+                  <div class="product-img">
+                    <img alt="product_name" src="{{prod.images[0].file_path}}" class="img-fluid">
+                    <!-- <img alt="product_name" src="" class="img-fluid"> -->
                   </div>
-                </a>
-              </div>
+                  <div class="card-body h-100">
+                    <div class="d-flex align-items-center justify-content-between">
+                      <h4 class="mb-1 productprice">₹{{prod.price}}</h4>
+                      <span class="badge new-product rounded-0 p-2" *ngIf="prod.created_date==='true'">New</span>
+                    </div>
+                    <p class="font9 productdesc mb-0">{{prod.brand_name}}</p>
+                    <h6 class="font600 mb-1">{{prod.product_name}}</h6>
+                  </div>
+                </div>
+              </a>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <section class="sectionthree mb-0">
-      <div class="container-fluid">
-        <div class="card shadow-none">
-          <div class="card-header bg-white d-flex justify-content-between">
-            <h5 class="mb-0 fs-6">Female Footwear Collections</h5>
-            <a href="javascript:void(0)" class="link-theme font600" (click)="goTo(9,12)">See All <i
-                class="bi bi-chevron-right"></i></a>
-          </div>
-          <div class="card-body">
-            <div class="row row-cols-lg-5 row-cols-2 gy-2">
-              <div class="col mb-0" *ngFor="let women of womensTopwearColl5">
-                <a href="javascript:void(0)" class="text-decoration-none" (click)="sendToDetails(women.product_id)">
-                  <div class="card shadow-none rounded-0 h-100">
-                    <div class="product-img"><img alt="product_name" src="./../../assets/images/puma-shoe.png"
-                        class="img-fluid"></div>
-                    <div class="card-body h-100">
-                      <h4 class="mb-1 productprice">₹{{women.price}}</h4>
-                      <p class="font9 productdesc mb-0">{{women.brand_name}}</p>
-                      <h6 class="font600 mb-1">{{women.product_name}}</h6>
-                    </div>
+    <section class="sectionthree">
+      <div class="card shadow-none">
+        <div class="card-header bg-white d-flex justify-content-between">
+          <h5 class="mb-0 fs-6">Female Footwear Collections</h5>
+          <a href="javascript:void(0)" class="link-theme font600" (click)="goTo(9,12)">See All <i
+              class="bi bi-chevron-right"></i></a>
+        </div>
+        <div class="card-body">
+          <div class="row row-cols-lg-5 row-cols-2 gy-2">
+            <div class="col mb-0" *ngFor="let women of womensTopwearColl5">
+              <a href="javascript:void(0)" class="text-decoration-none" (click)="sendToDetails(women.product_id)">
+                <div class="card shadow-none rounded-0 h-100">
+                  <div class="product-img"><img alt="product_name" src="{{women.images[0].file_path}}"
+                      class="img-fluid">
                   </div>
-                </a>
-              </div>
-              <!-- <div class="col mb-0 h-100"><a href="javascript:void(0)" class="text-decoration-none">
+                  <div class="card-body h-100">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <h4 class="mb-1 productprice">₹{{women.price}}</h4>
+                      <span class="badge new-product rounded-0 p-2" *ngIf="women.created_date==='true'">New</span>
+                    </div>
+                    <p class="font9 productdesc mb-0">{{women.brand_name}}</p>
+                    <h6 class="font600 mb-1">{{women.product_name}}</h6>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <!-- <div class="col mb-0 h-100"><a href="javascript:void(0)" class="text-decoration-none">
                   <div class="card shadow-none rounded-0">
                     <div class="product-img"><img alt="product_name"
                         src="./../../assets/images/puma-shoe.png"
@@ -66,10 +71,10 @@
                   </div>
                 </a>
               </div> -->
-            </div>
           </div>
         </div>
       </div>
     </section>
   </div>
 </main>
+<app-footer></app-footer>

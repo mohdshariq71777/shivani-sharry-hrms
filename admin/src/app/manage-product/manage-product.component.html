@@ -2,8 +2,11 @@
 <div class="bg-light mnhytBg">
   <div class="container-fluid py-3">
     <div class="text-end">
-      <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#addProdModal">
-        <i class="bi bi-plus-lg"></i> Add Product</button>
+      <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#manageProdModal"
+        (click)="openAddModal()">
+        <i class="bi bi-plus-lg"></i>
+        Add Product
+      </button>
     </div>
     <div class="row justify-content-center mt-2">
       <div class="col-sm-12">
@@ -13,26 +16,34 @@
               <tr>
                 <th>Sr. No.</th>
                 <th>Product Name</th>
-                <th>Product Description</th>
+                <th>Brand Name</th>
                 <th>Price</th>
                 <th>Category Name</th>
                 <th>Type Category Name</th>
                 <th>Group Category Name</th>
                 <th>Created Date</th>
                 <th>Updated Date</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let prod of products;let i=index">
                 <td>{{i+1}}</td>
                 <td>{{prod.product_name}}</td>
-                <td>{{prod.product_description}}</td>
+                <td>{{prod.brand_name}}</td>
                 <td>{{prod.price}}</td>
                 <td>{{prod.category_name}}</td>
                 <td>{{prod.type_category_name}}</td>
                 <td>{{prod.group_category_name}}</td>
                 <td>{{prod.created_date|date }}</td>
                 <td>{{prod.updated_date|date}}</td>
+                <td>
+                  <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#manageProdModal"
+                    (click)="getProductById(prod.product_id)">Edit</button>
+                  <button class="btn btn-sm btn-danger ms-2" data-bs-toggle="modal"
+                    data-bs-target="#confirmModalDeleteProduct"
+                    (click)="deleteProductMethod(prod.product_id,prod.product_name)">Delete</button>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -42,34 +53,35 @@
   </div>
 </div>
 
-<div class="modal fade" id="addProdModal">
+<div class="modal fade" id="manageProdModal">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-body">
         <div class="text-end">
           <button class="btn-close" data-bs-dismiss="modal"></button>
         </div>
-        <form #productForm="ngForm" (ngSubmit)="addProduct()">
+        <form #productForm="ngForm" (ngSubmit)="updateProduct()">
           <div class="row gy-3 align-items-center">
             <div class="col-sm-6">
-              <label>Group Category</label>
-              <select class="form-select" name="grp_cat_id" #grp_cat_id ngModel (change)="selectGrpCat()" required>
+              <label class="font600">Group Category</label>
+              <select class="form-select" name="grp_cat_id" [(ngModel)]="grp_cat_id" (change)="selectGrpCat()" required>
                 <option value="null" selected disabled>Select Group Category</option>
                 <option *ngFor="let cat of product_group_categories" [value]="cat.group_category_id">
                   {{cat.group_category_name}}</option>
               </select>
             </div>
             <div class="col-sm-6">
-              <label>Type Category</label>
-              <select class="form-select" name="type_cat_id" #type_cat_id ngModel (change)="selectTypeCat()" required>
+              <label class="font600">Type Category</label>
+              <select class="form-select" name="type_cat_id" [(ngModel)]="type_cat_id" (change)="selectTypeCat()"
+                required>
                 <option value="null" selected disabled>Select Type Category</option>
                 <option *ngFor="let cat of product_type_categories" [value]="cat.type_category_id">
                   {{cat.type_category_name}}</option>
               </select>
             </div>
             <div class="col-sm-6">
-              <label>Category</label>
-              <select class="form-select" name="cat_id" #cat_id ngModel required>
+              <label class="font600">Category</label>
+              <select class="form-select" name="cat_id" [(ngModel)]="cat_id" required>
                 <option value="null" selected disabled>Select Category</option>
                 <option *ngFor="let cat of product_categories" [value]="cat.category_id">
                   {{cat.category_name}}</option>
@@ -77,35 +89,77 @@
             </div>
 
             <div class="col-sm-6">
-              <label>Product Name</label>
-              <input name="prod_name" class="form-control" type="text" ngModel #prod_name
+              <label class="font600">Product Name</label>
+              <input name="prod_name" class="form-control" type="text" [(ngModel)]="prod_name"
                 placeholder="Enter product name" required>
             </div>
             <div class="col-sm-6">
-              <label>Product Price (in INR)</label>
-              <input name="prod_price" class="form-control" type="text" ngModel #prod_price
+              <label class="font600">Product Price (in INR)</label>
+              <input name="prod_price" class="form-control" type="text" [(ngModel)]="prod_price" max="5" maxlength="5"
                 placeholder="Enter product price" required>
             </div>
             <div class="col-sm-6">
               <div class="form-check">
-                <input name="isActive" class="form-check-input" type="checkbox" ngModel id="flexCheckChecked" checked
-                  #isActive>
+                <input name="isActive" class="form-check-input" type="checkbox" [(ngModel)]="isActive"
+                  id="flexCheckChecked" checked>
                 <label class="form-check-label" for="flexCheckChecked">
                   Is active
                 </label>
               </div>
             </div>
             <div class="col-sm-6">
-              <label>Brand Name</label>
-              <input name="brand_name" class="form-control" ngModel #brand_name placeholder="Write brand Name" required>
+              <label class="font600">Brand Name</label>
+              <input name="brand_name" class="form-control" [(ngModel)]="brand_name" placeholder="Write brand Name"
+                required>
             </div>
+            <div class="col-sm-12">
+              <label class="mb-2 font600">Product Image</label>
+              <div class="row">
+                <div class="col-2" *ngFor="let url of images;let i=index">
+                  <div class="position-relative" (click)="spliceImg(images,i)">
+                    <div class="position-absolute closeDiv">
+                      X
+                    </div>
+                  </div>
+                  <div class="border">
+                    <img src="{{url}}" class="img-fluid" alt="">
+                  </div>
+                </div>
+                <div class="col-2">
+                  <label class="imagebox" (click)="prod_image.click()">
+                    &plus;
+                  </label>
+                  <input type="file" (change)="onImage($event)" name="prod_image" class="form-control d-none" ngModel
+                    #prod_image multiple required>
+                </div>
+              </div>
+            </div>
+
             <div class="col-sm-12 text-center">
               <button type="button" class="btn btn-danger btn-sm me-1" data-bs-dismiss="modal">Cancel</button>
               <button type="submit" class="btn btn-success btn-sm" data-bs-dismiss="modal"
-                [disabled]="!productForm.valid">Add</button>
+                [disabled]="!productForm.valid">{{editMode===true?'Update':'Add'}} Product</button>
             </div>
           </div>
         </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" tabindex="-1" id="confirmModalDeleteProduct">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="text-end">
+          <button type="button" class="btn-close btn-sm" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <p class="text-center">Are you sure you want to delete <span class="font600">{{deleteprodName}}</span> </p>
+        <div class="mt-3 text-center">
+          <button type="button" class="btn btn-sm px-3 btn-secondary me-1" data-bs-dismiss="modal">No</button>
+          <button type="button" class="btn btn-sm px-3 btn-primary ms-1" data-bs-dismiss="modal"
+            (click)="deleteProduct()">Yes</button>
+        </div>
       </div>
     </div>
   </div>

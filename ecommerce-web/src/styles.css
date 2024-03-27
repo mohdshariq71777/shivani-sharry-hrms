@@ -65,3 +65,9 @@
 .cursor-pointer {
   cursor: pointer;
 }
+.new-product {
+  background: #ff0e70;
+}
+main.minHeightMain {
+  min-height: calc(100vh - 118px);
+}

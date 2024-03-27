@@ -27,7 +27,7 @@ app.use(cors({ origin: '*' }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'assets')));
 app.use(session({ secret: 'my secret', resave: false, saveUninitialized: false }));
 // app.use('/api/auth', authRouter);
 // app.use('/api/mail', mailRouter);

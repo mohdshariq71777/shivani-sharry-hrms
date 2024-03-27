@@ -4,3 +4,27 @@
 .mnhytBg {
   min-height: calc(100vh - 56px);
 }
+.imagebox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #ddd;
+  border-radius: 3px;
+  height: 106px;
+  font-size: 2rem;
+}
+.closeDiv {
+  text-decoration: none;
+  color: #fff;
+  width: 18px;
+  height: 18px;
+  background: red;
+  font-size: 11px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  top: -10px;
+  right: -10px;
+}

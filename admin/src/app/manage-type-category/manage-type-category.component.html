@@ -1,13 +1,93 @@
 <app-header></app-header>
 <div class="bg-light mnhytBg">
   <div class="container-fluid py-3">
-    <div class="text-end mb-2"><button class="btn btn-sm btn-success" data-bs-toggle="modal"
-        data-bs-target="#exampleModal">+
-        Add Type Category</button></div>
-    <div>
-      <ag-grid-angular style="height:500px" class="ag-theme-quartz" [rowData]="typeCategories"
-        [columnDefs]="columnDefs">
-      </ag-grid-angular>
+    <div class="text-end mb-2">
+      <button class="btn btn-primary btn-sm me-2" (click)="showFilterDivMethod()"><i
+          class="bi bi-funnel-fill"></i></button>
+      <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal"
+        (click)="addOpenModal()">+
+        Add Type Category</button>
+    </div>
+    <div class="card mb-3" [ngClass]="showFilterDiv?'d-block':'d-none'">
+      <div class="card-body">
+        <h5 class="fw-bold fs-6 mb-2">Filter By</h5>
+        <form #filterForm="ngForm" (ngSubmit)="applyFilter()">
+          <div class="row justify-content-center gy-3">
+            <div class="col-sm-3">
+              <label class="font600 mb-1">Group Category</label>
+              <select class="form-select" name="grpCatId" [(ngModel)]="grp_cat_id">
+                <option [value]="null" selected disabled>Select Group Category</option>
+                <option [value]="0">All</option>
+                <option *ngFor="let cat of product_group_categories" [value]="cat.group_category_id">
+                  {{cat.group_category_name}}</option>
+              </select>
+            </div>
+            <div class="col-sm-3">
+              <label class="font600 mb-1">From Date</label>
+              <input type="date" name="fromDate" class="form-control" [(ngModel)]="fromDate">
+            </div>
+            <div class="col-sm-3">
+              <label class="font600 mb-1">To Date</label>
+              <input type="date" name="toDate" class="form-control" [(ngModel)]="toDate">
+            </div>
+            <div class="col-sm-3">
+              <div class="form-check p-0">
+                <label class="font600 mb-1">Status</label>
+                <select class="form-select" name="status" [(ngModel)]="status">
+                  <option [value]="null" selected disabled>Select Status</option>
+                  <option [value]="-1">Both</option>
+                  <option value="1">Active</option>
+                  <option value="0">Inactive</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-12 text-center">
+              <button class="btn btn-primary btn-sm">Apply Filter</button>
+              <button type="button" class="btn btn-secondary btn-sm mx-1" (click)="resetFilterForm()">Remove
+                Filter</button>
+              <button type="button" class="btn btn-danger btn-sm" (click)="showFilterDiv=false">Close Form</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-bordered" *ngIf="typeCategories.length>0">
+        <thead>
+          <tr>
+            <th>Sr. No.</th>
+            <th>Type Category Name</th>
+            <th>Group Category Name</th>
+            <th>Status</th>
+            <th>Created Date</th>
+            <th>Updated Date</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let typeCat of typeCategories;let i=index">
+            <td>{{i + 1}}</td>
+            <td>{{typeCat.type_category_name}}</td>
+            <td>{{typeCat.group_category_name}}</td>
+            <td>{{typeCat.is_active===1?'Active':'Inactive'}}</td>
+            <td>{{typeCat.created_date | date}}</td>
+            <td>{{typeCat.updated_date | date}}</td>
+            <td>
+              <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                (click)="getTypeCatById(typeCat.type_category_id)">Edit</button>
+              <button class="btn btn-sm btn-danger ms-2" data-bs-toggle="modal" data-bs-target="#confirmModalDelete"
+                (click)="deleteIdMethod(typeCat.type_category_id)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="table table-bordered mb-0" *ngIf="typeCategories.length==0">
+        <tbody>
+          <tr>
+            <td class="text-center">No data to display</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
@@ -15,31 +95,31 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Manage Group Category</h5>
+        <h5 class="modal-title" id="exampleModalLabel">{{editMode===true?'Edit':'Add'}} Group Category</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="row justify-content-center mt-2">
-          <form #typeCatgForm="ngForm" (ngSubmit)="addTypeCategory()">
-            <div class="row gy-2">
+          <form #typeCatgForm="ngForm" (ngSubmit)="updateTypeCategory()">
+            <div class="row gy-3">
               <div class="col-sm-12">
-                <label>Group Category</label>
-                <select class="form-select" name="grp_cat_id" #grp_cat_id ngModel required>
+                <label class="mb-1 font600">Group Category <span class="text-danger">*</span> </label>
+                <select class="form-select" name="grp_cat_id" [(ngModel)]="grp_cat_id" required>
                   <option value="null" selected disabled>Select Group Category</option>
                   <option *ngFor="let cat of product_group_categories" [value]="cat.group_category_id">
                     {{cat.group_category_name}}</option>
                 </select>
               </div>
               <div class="col-sm-12">
-                <label>Type Category Name</label>
-                <input name="catName" type="text" class="form-control" placeholder="Enter type category name" ngModel
-                  #catName required>
+                <label class="mb-1 font600">Type Category Name <span class="text-danger">*</span></label>
+                <input name="typeCatName" type="text" class="form-control" placeholder="Enter type category name"
+                  [(ngModel)]="typeCatName" required>
               </div>
               <div class="col-sm-12">
                 <div class="form-check">
-                  <input name="isActive" class="form-check-input" type="checkbox" ngModel id="flexCheckChecked" checked
-                    #isActive>
-                  <label class="form-check-label" for="flexCheckChecked">
+                  <input name="isActive" class="form-check-input" type="checkbox" [(ngModel)]="isActive"
+                    id="flexCheckChecked" checked>
+                  <label class="form-check-label font600" for="flexCheckChecked">
                     Is active
                   </label>
                 </div>
@@ -47,10 +127,29 @@
               <div class="col-sm-12 text-center">
                 <button type="button" class="btn btn-danger me-2 btn-sm" data-bs-dismiss="modal">Cancel</button>
                 <button type="submit" class="btn btn-success btn-sm" data-bs-dismiss="modal"
-                  [disabled]="!typeCatgForm.valid">Add</button>
+                  [disabled]="!typeCatgForm.valid">{{editMode===true?'Update':'Add'}} Type Category</button>
               </div>
             </div>
           </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" tabindex="-1" id="confirmModalDelete">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="text-end">
+          <button type="button" class="btn-close btn-sm" data-bs-dismiss="modal" aria-label="Close"></button>
+
+        </div>
+        <p class="text-center">Are you sure you want to delete the type category?</p>
+        <div class="mt-3 text-center">
+          <button type="button" class="btn btn-sm px-3 btn-secondary me-1" data-bs-dismiss="modal">No</button>
+          <button type="button" class="btn btn-sm px-3 btn-primary ms-1" (click)="deleteTypeCategory(deleteId)"
+            data-bs-dismiss="modal">Yes</button>
         </div>
       </div>
     </div>

@@ -1,13 +1,13 @@
 <app-header></app-header>
-<main>
+<main class="minHeightMain">
   <div class="container mnwidth90plus py-3">
     <section class="sectionthree mb-2">
       <div class="container-fluid">
         <div class="row">
           <div class="col-sm-6">
             <splide [options]="optionsForTop">
-              <splide-slide *ngFor="let image of images">
-                <img [src]="image" alt="" class="w-100" />
+              <splide-slide *ngFor="let image of fetchedProduct?.images">
+                <img [src]="image.file_path" alt="" class="w-100" />
               </splide-slide>
             </splide>
           </div>
@@ -136,3 +136,4 @@
     </section>
   </div>
 </main>
+<app-footer></app-footer>
